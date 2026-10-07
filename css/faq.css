@@ -1,0 +1,136 @@
+/* =========================================================
+   LOG.OFF — faq.css
+   a help desk with a landline. ink, paper and a little alarm red.
+   ========================================================= */
+
+section { position: relative; }
+.h-big { margin: 0 0 22px; font-weight: 900; font-size: clamp(44px, 6.4vw, 104px); line-height: .86; letter-spacing: -.065em; }
+.lead { max-width: 48ch; margin: 0 0 28px; font-size: 18px; line-height: 1.5; letter-spacing: -.01em; }
+
+/* =========================================================
+   HERO — ink
+   ========================================================= */
+.f-hero {
+  min-height: 100svh; display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(24px, 4vw, 72px); align-items: center;
+  padding: 120px var(--gutter) 70px; background: var(--ink); color: var(--paper); overflow: hidden;
+}
+.f-hero .kicker { color: #9a9598; }
+.f-title { margin: 0; font-weight: 900; font-size: clamp(130px, 26vw, 420px); line-height: .76; letter-spacing: -.08em; color: var(--alarm); }
+.f-title .char { display: inline-block; }
+.f-sub { margin: 20px 0 0; font-weight: 800; font-size: clamp(30px, 4vw, 64px); line-height: .92; letter-spacing: -.055em; }
+.f-hero-figure { margin: 0; justify-self: end; width: min(100%, 420px); }
+.f-hero-figure .slot { place-items: end start; padding: 22px; }
+.f-hero-figure figcaption { margin-top: 12px; color: #9a9598; }
+.f-hero .star svg { fill: var(--alarm); }
+@media (max-width: 900px) { .f-hero { grid-template-columns: 1fr; } .f-hero-figure { justify-self: start; width: min(100%, 380px); } }
+
+/* =========================================================
+   SEARCH + LIST
+   ========================================================= */
+.faq { padding: clamp(60px, 8vw, 120px) var(--gutter) clamp(80px, 10vw, 140px); }
+.faq-bar { position: sticky; top: 0; z-index: 20; display: grid; gap: 14px; padding: 18px 0; margin-bottom: 20px; background: var(--paper); border-bottom: 2px solid var(--ink); }
+.search { display: flex; align-items: center; gap: 12px; padding: 12px 20px; border: 2px solid var(--ink); border-radius: 999px; background: #fff; }
+.search svg { width: 22px; height: 22px; flex: none; fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; }
+.search input { flex: 1; min-width: 0; border: 0; background: none; outline: none; font-weight: 700; font-size: clamp(18px, 2vw, 26px); letter-spacing: -.03em; }
+.search input::placeholder { color: #bdb8bb; font-weight: 600; }
+.search:focus-within { box-shadow: 0 0 0 4px var(--blush); }
+.search-count { flex: none; color: var(--graphite); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { padding: 7px 14px; border: 1.5px solid var(--ink); border-radius: 999px; background: transparent; font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; transition: background .3s, color .3s; }
+.chip:hover { background: var(--blush); }
+.chip.on { background: var(--ink); color: var(--paper); }
+
+.qa { list-style: none; margin: 0; padding: 0; }
+.qa-item { border-bottom: 1.5px solid var(--ink); }
+.qa-q {
+  width: 100%; display: grid; grid-template-columns: 80px 1fr 44px; gap: 14px; align-items: center; padding: 20px 0;
+  border: 0; background: none; text-align: left; font-weight: 800; font-size: clamp(22px, 2.6vw, 38px); line-height: 1.02; letter-spacing: -.045em;
+  transition: color .3s, padding .4s var(--ease);
+}
+.qa-q:hover { color: var(--alarm); padding-left: 8px; }
+.qa-n { font-family: var(--pixel); font-weight: 400; font-size: 34px; letter-spacing: 0; color: var(--hot); }
+.qa-cat { display: block; margin-top: 6px; font-family: var(--mono); font-weight: 400; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--graphite); }
+.qa-plus { position: relative; justify-self: end; width: 40px; height: 40px; border: 2px solid currentColor; border-radius: 50%; transition: transform .5s var(--ease), background .3s; }
+.qa-plus::before, .qa-plus::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 2px; margin: -1px 0 0 -7px; background: currentColor; }
+.qa-plus::after { transform: rotate(90deg); }
+.qa-item.open .qa-plus { transform: rotate(135deg); background: var(--hot); color: #fff; border-color: var(--hot); }
+.qa-a { height: 0; overflow: hidden; }
+.qa-a-inner { display: grid; grid-template-columns: 80px 1fr; gap: 14px; padding: 0 0 26px; }
+.qa-a-inner p { grid-column: 2; margin: 0; max-width: 62ch; font-size: 19px; line-height: 1.5; letter-spacing: -.01em; }
+.qa-a-inner em { font-family: var(--soft); font-size: 1.12em; }
+mark { background: var(--blush); color: inherit; padding: 0 2px; }
+.qa-empty { padding: 40px 0; text-align: center; }
+.qa-empty .script { margin: 0; font-size: 80px; line-height: 1; color: var(--hot); }
+@media (max-width: 600px) {
+  .qa-q { grid-template-columns: 46px 1fr 36px; }
+  .qa-a-inner { grid-template-columns: 46px 1fr; }
+  .qa-plus { width: 32px; height: 32px; }
+  .search-count { display: none; }
+}
+
+/* =========================================================
+   BREAK GLASS
+   ========================================================= */
+.glass-sec { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 80px); align-items: center; padding: clamp(80px, 10vw, 150px) var(--gutter); background: var(--alarm); }
+.glass-box { position: relative; width: min(100%, 420px); justify-self: center; aspect-ratio: 3 / 4; }
+.glass-behind { position: absolute; inset: 0; z-index: 1; display: grid; align-content: end; gap: 10px; padding: 18px; background: var(--paper); border: 3px solid var(--ink); }
+.glass-behind .slot { position: absolute; inset: 0; aspect-ratio: auto; height: 100%; place-items: start start; padding: 16px; }
+.glass-behind .slot > img { object-position: 50% 60%; }
+.glass-behind p { position: relative; z-index: 5; margin: 0; padding: 10px 14px; background: rgba(255, 255, 255, .92); font-size: 16px; line-height: 1.4; }
+.glass-behind p.mono { font-size: 10px; }
+.glass {
+  position: absolute; inset: 0; z-index: 3; padding: 0; border: 10px solid #e9e7e3; outline: 3px solid var(--ink);
+  background: linear-gradient(135deg, rgba(255, 255, 255, .75), rgba(220, 235, 245, .55) 50%, rgba(255, 255, 255, .7));
+  box-shadow: inset 0 0 40px rgba(255, 255, 255, .7), 10px 10px 0 var(--ink);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  display: grid; place-items: center;
+}
+.glass-label { display: grid; gap: 6px; padding: 14px 18px; border: 3px solid var(--alarm); background: #fff; color: var(--alarm); text-align: center; rotate: -3deg; }
+.glass-label b { font-weight: 900; font-size: clamp(18px, 2vw, 26px); letter-spacing: -.02em; }
+.glass-label span { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+.cracks { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.cracks path { fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; filter: drop-shadow(0 0 1px rgba(13, 12, 13, .7)); }
+.shard { position: absolute; z-index: 4; background: rgba(230, 240, 248, .8); border: 1px solid rgba(255, 255, 255, .9); pointer-events: none; }
+@media (max-width: 860px) { .glass-sec { grid-template-columns: 1fr; } }
+
+/* =========================================================
+   POSTCARD
+   ========================================================= */
+.ask-sec { padding: clamp(80px, 10vw, 150px) var(--gutter); background: var(--blush); overflow-x: clip; }
+.ask-head { max-width: 900px; margin-bottom: 40px; }
+.postcard {
+  position: relative; display: grid; grid-template-columns: 1.1fr .9fr; max-width: 980px; padding: 30px; gap: 0;
+  background: #fffdf8; border: 2px solid var(--ink); box-shadow: 0 30px 50px -26px rgba(13, 12, 13, .5); rotate: -1deg; transform-origin: 50% 50%;
+}
+.pc-left { padding-right: 28px; border-right: 2px dashed rgba(13, 12, 13, .4); display: grid; gap: 8px; align-content: start; }
+.pc-left textarea {
+  border: 0; background: repeating-linear-gradient(transparent 0 35px, rgba(47, 98, 255, .2) 35px 36px); resize: none; outline: none;
+  font-family: var(--soft); font-style: italic; font-size: 26px; line-height: 36px;
+}
+.pc-right { position: relative; display: grid; align-content: end; gap: 14px; padding-left: 28px; min-height: 280px; }
+.pc-stamp { position: absolute; top: 0; right: 0; width: 92px; padding: 10px 6px; text-align: center; background: var(--hot); color: #fff; font-family: var(--mono); font-size: 9px; line-height: 1.4; letter-spacing: .06em; outline: 3px dotted #fffdf8; outline-offset: -6px; }
+.pc-stamp b { font-family: var(--pixel); font-weight: 400; font-size: 24px; }
+.pc-postmark { position: absolute; top: 16px; right: 60px; padding: 10px; border: 3px double var(--ink); border-radius: 50%; width: 110px; aspect-ratio: 1; display: grid; place-content: center; text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; rotate: -16deg; opacity: 0; scale: 2.2; pointer-events: none; }
+.postcard.sent .pc-postmark { opacity: .85; scale: 1; transition: scale .35s cubic-bezier(.34, 1.8, .64, 1), opacity .2s; }
+.pc-line { display: grid; grid-template-columns: 50px 1fr; align-items: end; gap: 8px; margin: 0; padding-bottom: 6px; border-bottom: 1.5px solid var(--ink); }
+.pc-line input { border: 0; background: none; outline: none; font-family: var(--soft); font-style: italic; font-size: 22px; }
+.pc-to { font-family: var(--soft); font-style: italic; font-size: 18px; }
+.postcard .pill { justify-self: start; margin-top: 6px; }
+.pc-note { margin: 22px 0 0; }
+.pc-note b { color: var(--hot); font-weight: 400; }
+@media (max-width: 760px) {
+  .postcard { grid-template-columns: 1fr; padding: 22px; }
+  .pc-left { padding: 0 0 22px; border-right: 0; border-bottom: 2px dashed rgba(13, 12, 13, .4); }
+  .pc-right { padding: 22px 0 0; }
+}
+
+/* =========================================================
+   CTA
+   ========================================================= */
+.f-cta { padding: clamp(80px, 10vw, 140px) var(--gutter); background: #fff; text-align: center; overflow-x: clip; }
+.f-cta-title { margin: 0 0 34px; font-weight: 900; font-size: clamp(50px, 9vw, 150px); line-height: .86; letter-spacing: -.07em; }
+.f-cta-links { display: flex; justify-content: center; align-items: center; gap: 28px; flex-wrap: wrap; }
+
+/* the nav sits on ink here: flip it to paper until you scroll */
+.topnav:not(.scrolled) { color: var(--paper); }
+.topnav:not(.scrolled) .nav-cta { background: var(--paper); color: var(--ink); border-color: var(--paper); }

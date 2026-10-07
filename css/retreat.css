@@ -1,0 +1,163 @@
+/* =========================================================
+   LOG.OFF — retreat.css (the house)
+   cobalt at the door, paper inside.
+   ========================================================= */
+
+section { position: relative; }
+.h-big { margin: 0 0 22px; font-weight: 900; font-size: clamp(44px, 6.4vw, 104px); line-height: .86; letter-spacing: -.065em; }
+.h-mid { margin: 0 0 20px; font-weight: 900; font-size: clamp(34px, 4vw, 60px); line-height: .9; letter-spacing: -.055em; }
+.lead { max-width: 48ch; margin: 0 0 28px; font-size: 18px; line-height: 1.5; letter-spacing: -.01em; }
+.pill.light { color: var(--paper); }
+.pill.light::before { background: var(--paper); }
+.pill.light:hover { color: var(--cobalt); }
+
+/* =========================================================
+   HERO — cobalt, like the "unsure?" poster
+   ========================================================= */
+.h-hero {
+  min-height: 100svh; display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(24px, 4vw, 72px); align-items: center;
+  padding: 120px var(--gutter) 70px; background: var(--cobalt); color: var(--paper); overflow: hidden;
+}
+.h-hero .kicker { color: rgba(246, 244, 241, .75); }
+.h-hero .kicker b { color: var(--blush); }
+.h-title { margin: 0 0 26px; font-weight: 900; font-size: clamp(56px, 8.4vw, 150px); line-height: .84; letter-spacing: -.07em; }
+.h-hero-figure { margin: 0; justify-self: end; width: min(100%, 440px); }
+.h-hero-figure .slot { place-items: end start; padding: 22px; }
+.h-hero-figure figcaption { margin-top: 12px; color: rgba(246, 244, 241, .8); }
+.h-hero .star svg { fill: var(--paper); }
+@media (max-width: 900px) { .h-hero { grid-template-columns: 1fr; } .h-hero-figure { justify-self: start; width: min(100%, 380px); } }
+
+/* =========================================================
+   THE WALK — pinned map
+   ========================================================= */
+.walk { background: var(--paper); }
+.walk-inner { min-height: 100svh; display: grid; grid-template-rows: auto 1fr; padding: 96px var(--gutter) 40px; }
+.walk-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 0 30px; }
+.walk-head .kicker { flex-basis: 100%; }
+.walk-head .h-big { margin-bottom: 10px; font-size: clamp(40px, 5.4vw, 92px); }
+.walk-hint { margin: 0 0 14px; color: var(--graphite); }
+.map-wrap { position: relative; display: grid; grid-template-columns: 1fr 260px; gap: 30px; align-items: center; min-height: 0; }
+.map { width: 100%; height: 100%; max-height: calc(100svh - 300px); min-height: 320px; overflow: visible; }
+.sea { fill: var(--mist); }
+.waves path { fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; }
+.hatch path { fill: none; stroke: rgba(13, 12, 13, .25); stroke-width: 1.5; }
+.route-bg { fill: none; stroke: rgba(13, 12, 13, .18); stroke-width: 3; stroke-dasharray: 2 10; stroke-linecap: round; }
+.route { fill: none; stroke: var(--hot); stroke-width: 5; stroke-linecap: round; }
+.house path, .house rect { fill: #fff; stroke: var(--ink); stroke-width: 2.5; }
+.mark circle { fill: var(--paper); stroke: var(--ink); stroke-width: 2.5; }
+.mark.on circle { fill: var(--hot); }
+.mark text { font-family: var(--mono); font-size: 15px; letter-spacing: .04em; text-transform: uppercase; fill: var(--ink); }
+.mark .km { font-family: var(--pixel); font-size: 22px; fill: var(--hot); text-transform: none; }
+
+.signal { padding: 22px; border: 2px solid var(--ink); background: #fff; box-shadow: 8px 8px 0 var(--ink); }
+.signal-net { margin: 0; font-family: var(--pixel); font-size: 64px; line-height: .8; }
+.signal-net.none { color: var(--hot); font-size: 40px; line-height: 1; }
+.signal-bars { display: flex; align-items: flex-end; gap: 5px; height: 46px; margin: 14px 0 18px; }
+.signal-bars i { flex: 1; background: var(--ink); transition: opacity .3s, background .3s; }
+.signal-bars i:nth-child(1) { height: 20%; } .signal-bars i:nth-child(2) { height: 40%; } .signal-bars i:nth-child(3) { height: 60%; } .signal-bars i:nth-child(4) { height: 80%; } .signal-bars i:nth-child(5) { height: 100%; }
+.signal-bars i.off { opacity: .12; }
+.signal-km { margin: 0; font-size: 15px; }
+.signal-km b { font-family: var(--pixel); font-weight: 400; font-size: 44px; line-height: .8; letter-spacing: -.01em; color: var(--hot); font-variant-numeric: tabular-nums; }
+.signal-msg { margin: 12px 0 0; color: var(--graphite); min-height: 3.2em; }
+@media (max-width: 900px) {
+  .map-wrap { grid-template-columns: 1fr; }
+  .map { max-height: none; }
+  .signal { position: sticky; bottom: 16px; }
+}
+
+/* =========================================================
+   THE ROOMS — floor plan
+   ========================================================= */
+.rooms { padding: clamp(80px, 11vw, 160px) var(--gutter); background: #fff; }
+.rooms-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 0 30px; margin-bottom: 30px; }
+.rooms-head .kicker { flex-basis: 100%; }
+.rooms-hint { color: var(--graphite); margin: 0 0 24px; }
+.rooms-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(24px, 4vw, 60px); align-items: start; }
+.plan { width: 100%; height: auto; overflow: visible; }
+.room { cursor: pointer; outline: none; }
+.room rect { fill: var(--paper); stroke: var(--ink); stroke-width: 3; transition: fill .35s; }
+.room text { font-family: var(--mono); font-size: 13px; text-anchor: middle; text-transform: uppercase; letter-spacing: .06em; fill: var(--ink); pointer-events: none; transition: fill .35s; }
+.room:hover rect, .room:focus-visible rect { fill: var(--blush); }
+.room.active rect { fill: var(--hot); }
+.room.active text { fill: #fff; }
+.door { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 4 4; }
+.plan-n { font-family: var(--mono); font-size: 12px; text-anchor: end; fill: var(--graphite); }
+.room-panel { position: sticky; top: 90px; }
+.room-photo { position: relative; aspect-ratio: 1 / 1; overflow: hidden; border: 2px solid var(--ink); }
+.room-photo .slot { position: absolute; inset: 0; aspect-ratio: auto; height: 100%; }
+.room-n { margin: 16px 0 6px; color: var(--hot); }
+.room-title { margin: 0 0 10px; font-weight: 900; font-size: clamp(32px, 3.4vw, 50px); line-height: .9; letter-spacing: -.05em; }
+.room-text { margin: 0; font-size: 17px; line-height: 1.5; max-width: 44ch; }
+@media (max-width: 900px) { .rooms-grid { grid-template-columns: 1fr; } .room-panel { position: static; } }
+
+/* =========================================================
+   THE LOCKERS
+   ========================================================= */
+.lockers { padding: clamp(80px, 11vw, 160px) var(--gutter); background: var(--blush); overflow-x: clip; }
+.lockers-head { max-width: 900px; margin-bottom: 40px; }
+.pile { margin: 0; }
+.pile b { font-family: var(--pixel); font-weight: 400; font-size: 28px; color: var(--hot); font-variant-numeric: tabular-nums; }
+.locker-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; perspective: 1400px; }
+.locker { position: relative; aspect-ratio: 3 / 5; background: #2a2427; border: 2px solid var(--ink); }
+.locker-inside {
+  position: absolute; inset: 0; display: grid; place-content: center; padding: 14px; text-align: center; gap: 8px;
+  background: repeating-linear-gradient(0deg, #1b1719 0 22px, #231e21 22px 24px); color: var(--paper);
+}
+.locker-inside b { font-family: var(--pixel); font-weight: 400; font-size: 26px; line-height: 1; color: var(--hot); }
+.locker-inside span { font-family: var(--mono); font-size: 11px; line-height: 1.45; }
+.locker-door {
+  position: absolute; inset: 0; z-index: 2; display: grid; grid-template-rows: auto 1fr auto; padding: 12px 10px; border: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .22), transparent 30%), var(--hot); color: var(--ink);
+  transform-origin: 0 50%; transition: filter .5s;
+}
+.locker-door[aria-expanded="true"] { filter: brightness(.7); z-index: 3; }
+.locker-door[aria-expanded="true"] > *, .locker-door[aria-expanded="true"]::before, .locker-door[aria-expanded="true"]::after { opacity: 0; transition: opacity .2s; }
+.locker-door::before { content: ""; position: absolute; left: 22%; right: 22%; top: 18%; height: 26%; background: repeating-linear-gradient(0deg, rgba(13, 12, 13, .55) 0 3px, transparent 3px 8px); }
+.locker-door::after { content: ""; position: absolute; right: 12px; top: 52%; width: 6px; height: 24px; border-radius: 3px; background: var(--ink); }
+.locker-no { justify-self: start; font-family: var(--pixel); font-size: 22px; line-height: 1; }
+.locker-name { align-self: end; justify-self: center; margin-bottom: 4px; padding: 2px 8px; background: #fff; border: 1px solid var(--ink); font-family: var(--script); font-size: 22px; line-height: 1.1; rotate: -3deg; }
+.locker.yours .locker-door { background: linear-gradient(90deg, rgba(255, 255, 255, .25), transparent 30%), var(--cobalt); color: #fff; }
+.locker.yours .locker-name { color: var(--ink); }
+@media (max-width: 900px) { .locker-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 480px) { .locker-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* =========================================================
+   IN / NOT IN YOUR ROOM
+   ========================================================= */
+.inv { padding: clamp(80px, 11vw, 160px) var(--gutter); overflow-x: clip; }
+.inv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 100px); }
+.inv-list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+.inv-list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 14px 0; border-bottom: 1px dashed rgba(13, 12, 13, .35); font-weight: 700; font-size: clamp(20px, 2vw, 28px); letter-spacing: -.035em; }
+.inv-list li::before { content: "✓"; font-family: var(--mono); font-size: 14px; color: var(--hot); }
+.inv-list em { font-family: var(--soft); font-weight: 400; font-size: .8em; color: var(--graphite); letter-spacing: 0; }
+.not .h-mid { color: var(--graphite); }
+.not .inv-list li::before { content: "×"; }
+.not .inv-list span { position: relative; }
+.not .inv-list span::after { content: ""; position: absolute; left: -2%; right: -2%; top: 55%; height: 3px; background: var(--hot); transform-origin: left; scale: var(--x, 1) 1; }
+@media (max-width: 800px) { .inv-grid { grid-template-columns: 1fr; } }
+
+/* =========================================================
+   HOUSE RULES
+   ========================================================= */
+.rules { padding: clamp(80px, 11vw, 160px) var(--gutter); background: var(--ink); color: var(--paper); overflow-x: clip; }
+.rules .kicker { color: #9a9598; }
+.rule-list { list-style: none; margin: 30px 0 0; padding: 0; border-top: 1px solid rgba(255, 255, 255, .25); }
+.rule-list li {
+  position: relative; display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 20px; padding: 18px 0; overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, .25); isolation: isolate; transition: color .4s;
+}
+.rule-list li::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--hot); transform: translateY(101%); transition: transform .5s var(--ease); }
+.rule-list li:hover::before { transform: translateY(0); }
+.rule-list li:hover { color: var(--ink); }
+.rule-n { font-family: var(--pixel); font-size: clamp(50px, 6vw, 90px); line-height: .8; }
+.rule-list p { margin: 0; font-weight: 700; font-size: clamp(22px, 2.8vw, 42px); line-height: 1.05; letter-spacing: -.04em; }
+@media (max-width: 600px) { .rule-list li { grid-template-columns: 64px 1fr; } }
+
+/* =========================================================
+   CTA — the door
+   ========================================================= */
+.door-cta { position: relative; padding: clamp(60px, 8vw, 110px) var(--gutter); background: #fff; }
+.door-cta .slot { max-width: 1100px; margin: 0 auto; place-items: end start; padding: 22px; }
+.door-copy { max-width: 1100px; margin: -0.55em auto 0; position: relative; z-index: 5; }
+.door-title { margin: 0; font-weight: 900; font-size: clamp(54px, 10vw, 170px); line-height: .85; letter-spacing: -.07em; color: var(--hot); }
+.door-links { display: flex; align-items: center; gap: 28px; margin-top: 30px; }

@@ -1,0 +1,87 @@
+/* =========================================================
+   LOG.OFF — privacy.css (what this device remembers)
+   lilac paper, index cards, a button that forgets.
+   ========================================================= */
+
+section { position: relative; }
+.h-big { margin: 0 0 22px; font-weight: 900; font-size: clamp(44px, 6.4vw, 104px); line-height: .86; letter-spacing: -.065em; }
+.lead { max-width: 52ch; margin: 0 0 28px; font-size: 18px; line-height: 1.5; letter-spacing: -.01em; }
+code { font-family: var(--mono); font-size: .85em; padding: 1px 6px; background: var(--paper-2); border: 1px solid rgba(13, 12, 13, .15); border-radius: 4px; }
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.p-hero {
+  min-height: 100svh; display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(24px, 4vw, 72px); align-items: center;
+  padding: 120px var(--gutter) 70px; background: var(--lilac); overflow: hidden;
+}
+.pv-title { margin: 0 0 26px; font-weight: 900; font-size: clamp(56px, 8.4vw, 150px); line-height: .84; letter-spacing: -.07em; }
+.mem-total { margin: 0; }
+.mem-total b { font-family: var(--pixel); font-weight: 400; font-size: 26px; color: var(--hot); }
+.p-hero-figure { margin: 0; justify-self: end; width: min(100%, 420px); rotate: -2deg; }
+.p-hero-figure .slot { place-items: end start; padding: 22px; border: 3px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); }
+.p-hero-figure figcaption { margin-top: 14px; }
+.p-hero .star svg { fill: var(--ink); }
+@media (max-width: 900px) { .p-hero { grid-template-columns: 1fr; } .p-hero-figure { justify-self: start; width: min(100%, 360px); } }
+
+/* =========================================================
+   THE MEMORY — index cards
+   ========================================================= */
+.memory { padding: clamp(80px, 10vw, 150px) var(--gutter); overflow-x: clip; }
+.memory-head { max-width: 900px; margin-bottom: 40px; }
+.memory-hint { color: var(--graphite); max-width: 70ch; }
+.memory-hint b { color: var(--hot); font-weight: 400; }
+.cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+.card {
+  position: relative; display: grid; grid-template-rows: auto auto 1fr auto; gap: 8px; padding: 18px 18px 14px;
+  background: #fff; border: 2px solid var(--ink); rotate: var(--r, 0deg);
+  background-image: linear-gradient(transparent 40px, rgba(255, 31, 143, .5) 40px, rgba(255, 31, 143, .5) 41px, transparent 41px),
+                    repeating-linear-gradient(transparent 0 27px, rgba(47, 98, 255, .12) 27px 28px);
+  box-shadow: 6px 6px 0 var(--ink); transition: rotate .4s var(--ease), translate .4s var(--ease);
+}
+.card:hover { rotate: 0deg; translate: 0 -4px; }
+.card-key { margin: 0; display: flex; justify-content: space-between; gap: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: var(--graphite); }
+.card-key b { font-weight: 400; color: var(--hot); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.card-label { margin: 6px 0 0; font-weight: 900; font-size: 22px; line-height: 1; letter-spacing: -.04em; }
+.card-value { margin: 0; font-size: 15px; line-height: 1.4; overflow-wrap: anywhere; }
+.card-value .big { display: block; font-family: var(--pixel); font-size: 48px; line-height: .9; color: var(--ink); }
+.card-value ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.card-value li { padding: 2px 9px; border-radius: 999px; background: var(--blush); font-size: 13px; text-decoration: line-through; text-decoration-color: var(--hot); }
+.card-forget {
+  justify-self: start; margin-top: 4px; padding: 6px 12px; border: 1.5px solid var(--ink); border-radius: 999px; background: transparent;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; transition: background .3s, color .3s;
+}
+.card-forget:hover { background: var(--ink); color: var(--paper); }
+.card.session { background-color: var(--paper); }
+.card.session .card-forget { display: none; }
+.empty { text-align: center; padding: 30px 0; }
+.empty .script { margin: 0; font-size: 90px; line-height: 1; color: var(--hot); }
+.bit { position: fixed; z-index: 130; width: 10px; height: 10px; pointer-events: none; background: var(--ink); }
+
+/* =========================================================
+   FORGET EVERYTHING
+   ========================================================= */
+.forget { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(30px, 5vw, 80px); align-items: center; padding: clamp(80px, 10vw, 150px) var(--gutter); background: var(--ink); color: var(--paper); }
+.forget .kicker { color: #9a9598; }
+.hold { display: inline-flex; align-items: center; gap: 16px; padding: 0; border: 0; background: none; color: inherit; font-weight: 800; font-size: 20px; letter-spacing: -.02em; user-select: none; -webkit-user-select: none; touch-action: none; }
+.hold svg { rotate: -90deg; }
+.hold circle { fill: none; stroke: rgba(255, 255, 255, .2); stroke-width: 4; }
+.hold .hold-ring { stroke: var(--hot); stroke-dasharray: 182.2; stroke-dashoffset: 182.2; stroke-linecap: round; }
+.hold:focus-visible { outline: 2px dashed var(--hot); outline-offset: 8px; }
+.big-hold { flex-direction: column; justify-self: center; text-align: center; }
+.big-hold svg { width: clamp(160px, 18vw, 230px); height: auto; }
+.big-hold circle { stroke-width: 3; }
+.big-hold .hold-ring { stroke-width: 5; }
+@media (max-width: 860px) { .forget { grid-template-columns: 1fr; } }
+
+/* =========================================================
+   THE SMALL PRINT
+   ========================================================= */
+.print { padding: clamp(80px, 10vw, 150px) var(--gutter); background: #fff; overflow-x: clip; }
+.articles { list-style: none; margin: 20px 0 50px; padding: 0; border-top: 2px solid var(--ink); }
+.articles li { display: grid; grid-template-columns: clamp(70px, 10vw, 150px) 1fr; gap: 14px; padding: 22px 0; border-bottom: 1px dashed rgba(13, 12, 13, .35); }
+.a-n { font-family: var(--pixel); font-size: clamp(44px, 6vw, 90px); line-height: .8; color: var(--hot); }
+.articles h3 { margin: 0 0 8px; font-weight: 900; font-size: clamp(26px, 3vw, 44px); line-height: .95; letter-spacing: -.05em; }
+.articles p { margin: 0; max-width: 64ch; font-size: 18px; line-height: 1.5; }
+.articles em { font-family: var(--soft); font-size: 1.1em; }
+.print-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 28px; }
