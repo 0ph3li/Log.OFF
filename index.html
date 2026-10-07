@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LOG.OFF — a seven-day retreat for people who can't press esc</title>
+  <meta name="description" content="LOG.OFF: a digital detox retreat in a white house with no signal. Seven days, no screens, no stories. You were never the user.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Instrument+Serif:ital@0;1&family=Pinyon+Script&family=Space+Mono:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body id="top" data-page="home">
+
+  <!-- shared SVG: four-point star + cursor arrow -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="star" viewBox="0 0 24 24"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></symbol>
+      <symbol id="arrow" viewBox="0 0 14 20"><path d="M1 1 L1 16 L4.6 12.6 L7.2 18.6 L9.8 17.4 L7.3 11.6 L12.4 11.6 Z" fill="#fff" stroke="#0d0c0d" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ LOADER ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <p class="loader-word">LOG.OFF<span class="blink">_</span></p>
+      <div class="loader-grid" id="loaderGrid"></div>
+      <p class="loader-line mono"><span id="loaderMsg">closing 47 tabs</span><span><span id="loaderCount">0</span>%</span></p>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+  <div class="pings" id="pings" aria-live="off"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="topnav" id="topnav">
+    <a class="nav-logo" href="index.html" aria-label="LOG.OFF — home">LOG.OFF<span class="blink">_</span></a>
+    <nav aria-label="Main">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" aria-current="page"><span data-t="Home">Home</span></a></li>
+        <li><a href="program.html"><span data-t="The program">The program</span></a></li>
+        <li><a href="retreat.html"><span data-t="The house">The house</span></a></li>
+        <li><a href="let-go.html"><span data-t="Let it go">Let it go</span></a></li>
+        <li><a href="faq.html"><span data-t="FAQ">FAQ</span></a></li>
+      </ul>
+    </nav>
+    <div class="status" aria-label="Your connection">
+      <span class="status-time">screen time <b id="screenTime">00:00:00</b></span>
+      <span class="bars" id="bars" title="signal"><i></i><i></i><i></i><i></i></span>
+      <span class="battery" id="battery" title="social battery"><i></i></span>
+    </div>
+    <a class="pill solid nav-cta" href="check-in.html" data-magnetic>Check in <span class="arrow">→</span></a>
+    <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span></button>
+  </header>
+  <div class="menu" id="menu" aria-hidden="true">
+    <button class="pill menu-close" id="menuClose">close ×</button>
+  </div>
+
+  <main>
+
+    <!-- ============ 01 · HERO — pls help i cant esc ============ -->
+    <section class="hero" id="hero">
+      <div class="hero-copy">
+        <p class="hero-meta mono">issue n° 01 · chronic online-ness<br>est. 2026 · a house with no signal</p>
+        <h1 class="hero-title" aria-label="pls help, i cant esc">
+          <span class="line"><span data-chars>pls</span></span>
+          <span class="line"><span data-chars>help</span></span>
+          <span class="line"><span data-chars>i cant</span></span>
+        </h1>
+        <button class="esc-key" id="heroEsc" aria-describedby="escHint" data-magnetic data-cursor="not yet"><span>esc</span></button>
+        <p class="hero-note mono" id="escHint">//reducing screentime helps improve focus;<br>mental clarity; and overall well-being.</p>
+      </div>
+
+      <figure class="hero-figure">
+        <div class="slot pixel" data-img="INDEX/hero.jpg" data-ratio="3/4" data-pixel="hero" data-alt="A girl in a black dress standing still, her face hidden by a pixelated block">
+          <span class="slot-label">hero.jpg<small>full figure, face hidden · 3:4</small></span>
+        </div>
+        <figcaption class="mono"><span id="holdCap">slow down. let it load.</span><span class="hold-meter"><i id="holdMeter"></i></span></figcaption>
+      </figure>
+
+      <span class="star" style="top:18%;left:52%"><svg><use href="#star"/></svg></span>
+      <span class="star" style="bottom:14%;left:8%;animation-delay:-1.2s;width:14px;height:14px"><svg><use href="#star"/></svg></span>
+      <p class="hero-scroll mono">the only way out is through ↓</p>
+    </section>
+
+    <!-- ============ tape ============ -->
+    <div class="tape" data-tape>
+      <div class="tape-track">
+        <span>reducing screentime helps improve focus <b>//</b> mental clarity <b>//</b> overall well-being <b>//</b> you are not your feed <b>//</b> nobody is watching <b>//</b></span>
+      </div>
+    </div>
+
+    <!-- ============ 02 · RECEIPT — what this visit cost you ============ -->
+    <section class="receipt-sec" id="receipt">
+      <div class="receipt-copy">
+        <p class="kicker" data-scramble>02 · <b>while you were here</b></p>
+        <h2 class="h-big" data-split>this is<br><s>trash</s> <span class="soft">your time.</span></h2>
+        <p class="lead reveal">Every second on a screen gets printed somewhere. Usually on somebody else's revenue report. Here's the receipt for <em>this</em> visit, live, kept honest. It never leaves your device.</p>
+        <div class="receipt-stats reveal">
+          <div><b id="statSec">0</b><span class="mono">seconds you gave us</span></div>
+          <div><b id="statMeters">0.0</b><span class="mono">metres scrolled</span></div>
+          <div><b id="statVisits">1</b><span class="mono">times you came back</span></div>
+        </div>
+      </div>
+
+      <div class="receipt-stage">
+        <div class="slot tape-photo" data-img="INDEX/receip.jpg" data-ratio="4/3" data-blocks data-alt="Torn paper, an old bus ticket and a crumpled receipt">
+          <span class="slot-label">receipt-collage.jpg<small>torn paper / tickets, b&amp;w · 4:3</small></span>
+        </div>
+        <article class="receipt" id="receiptPaper" aria-label="Your receipt">
+          <p class="r-head">LOG.OFF<br><span>attention dept. · till 03</span></p>
+          <p class="r-date mono" id="rDate">—</p>
+          <ul class="r-lines">
+            <li><span>time on this page</span><b id="rTime">00:00:00</b></li>
+            <li><span>tabs abandoned</span><b id="rTabs">0</b></li>
+            <li><span>scrolled</span><b id="rScroll">0.0 m</b></li>
+            <li><span>cursor travelled</span><b id="rCursor">0.0 m</b></li>
+            <li><span>notifications ignored</span><b id="rPings">0</b></li>
+            <li><span>escape attempts</span><b id="rEsc">0</b></li>
+          </ul>
+          <p class="r-total"><span>total attention spent</span><b>priceless*</b></p>
+          <p class="r-small">*for you. for them it's about €0.0021 per minute.</p>
+          <svg class="r-barcode" id="barcode" viewBox="0 0 220 56" aria-hidden="true"></svg>
+          <p class="r-foot">YOU ARE THE PRODUCT<br><span id="rCode">0 51125 01800 5</span></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ 03 · MANIFESTO — blur out the unimportant ============ -->
+    <section class="manifesto" id="manifesto">
+      <p class="kicker" data-scramble>03 · <b>the manifesto</b></p>
+      <p class="mf-text" id="mfText">you never chose to stay. the feed chose for you. every like was a <em>leash</em>, every ping a tiny <em>hook</em>. so we built a white house with no signal, where you can find out who you are when <em>nobody is watching.</em> seven days. no screens. no stories. just you, the sea, and the boring, <em>beautiful</em> middle of the afternoon.</p>
+      <div class="mf-side mono">
+        <p>blur out<br>the unimportant</p>
+        <p>notice<br>the details</p>
+      </div>
+    </section>
+
+    <!-- ============ 04 · UNSURE? SO ARE WE. ============ -->
+    <section class="unsure" id="unsure">
+      <div class="unsure-figure">
+        <div class="slot pixel" data-img="INDEX/unsure.jpg" data-ratio="4/5" data-pixel="unsure" data-alt="A portrait, still pixelated, slowly coming into focus">
+          <span class="slot-label">unsure.jpg<small>portrait, waist up, warm light · 4:5</small></span>
+        </div>
+        <p class="unsure-word" aria-hidden="true" data-chars>unsure?</p>
+      </div>
+      <div class="unsure-copy">
+        <p class="kicker" data-scramble>04 · <b>the retreat</b></p>
+        <h2 class="h-big" data-split>unsure?<br><span class="blue">so are we.</span></h2>
+        <p class="lead reveal">Nobody arrives ready. Most guests check their pocket for the first two days. That's fine. The picture gets clearer the longer you stay.</p>
+        <dl class="facts">
+          <div><dt class="mono">where</dt><dd>a white house on a cliff, somewhere without 5G</dd></div>
+          <div><dt class="mono">how long</dt><dd>7 days · 6 nights · 0 bars</dd></div>
+          <div><dt class="mono">you bring</dt><dd>a book, a jumper, your attention span <span class="soft">(we'll help you find it)</span></dd></div>
+          <div><dt class="mono">you leave</dt><dd>your phone, in a pink locker, in a sealed bag, with your name on it</dd></div>
+        </dl>
+        <a class="pill" href="retreat.html" data-magnetic>See the house <span class="arrow">→</span></a>
+      </div>
+    </section>
+
+    <!-- ============ 05 · THE PROGRAM — seven days, less every day ============ -->
+    <section class="program" id="program">
+      <div class="program-head">
+        <p class="kicker" data-scramble>05 · <b>the program</b></p>
+        <h2 class="h-big" data-split>seven days.<br>less every day.</h2>
+        <p class="mono program-hint">scroll → each day has fewer pixels than the one before</p>
+      </div>
+      <div class="program-bar" aria-hidden="true"><i id="programBar"></i></div>
+      <div class="days-wrap">
+        <ol class="days" id="days">
+          <li class="day" style="--n:1"><span class="day-n">01</span><div class="slot" data-img="INDEX/day-1.jpg" data-ratio="4/5"><span class="slot-label">day-1.jpg<small>phone in a sealed bag · 4:5</small></span></div><h3>withdrawal</h3><p>Your hand looks for a phone that isn't there. Forty-three times, on average.</p></li>
+          <li class="day" style="--n:2"><span class="day-n">02</span><div class="slot" data-img="INDEX/day-2.jpg" data-ratio="4/5"><span class="slot-label">day-2.jpg<small>empty pocket / hands · 4:5</small></span></div><h3>phantom vibrations</h3><p>Your leg buzzes. Nothing is there. We call it the ghost of group chats past.</p></li>
+          <li class="day" style="--n:3"><span class="day-n">03</span><div class="slot" data-img="INDEX/day-3.jpg" data-ratio="4/5"><span class="slot-label">day-3.jpg<small>staring at the ceiling · 4:5</small></span></div><h3>boredom</h3><p>The hardest, holiest day. Something grows in the empty space. Usually an idea.</p></li>
+          <li class="day" style="--n:4"><span class="day-n">04</span><div class="slot" data-img="INDEX/day-4.jpg" data-ratio="4/5"><span class="slot-label">day-4.jpg<small>sunset, nobody filming · 4:5</small></span></div><h3>the first sunset you didn't film</h3><p>It was better than the photo would have been. You'll have to trust us.</p></li>
+          <li class="day" style="--n:5"><span class="day-n">05</span><div class="slot" data-img="INDEX/day-5.jpg" data-ratio="4/5"><span class="slot-label">day-5.jpg<small>two strangers talking · 4:5</small></span></div><h3>talking to strangers</h3><p>No usernames. No mutuals. Just a name, a face, and a long dinner.</p></li>
+          <li class="day" style="--n:6"><span class="day-n">06</span><div class="slot" data-img="INDEX/day-6.jpg" data-ratio="4/5"><span class="slot-label">day-6.jpg<small>handwritten letter · 4:5</small></span></div><h3>letters</h3><p>You write to someone by hand. It takes four days to arrive. It's worth every one.</p></li>
+          <li class="day" style="--n:7"><span class="day-n">07</span><div class="slot" data-img="INDEX/day-7.jpg" data-ratio="4/5"><span class="slot-label">day-7.jpg<small>open sky, almost white · 4:5</small></span></div><h3>free</h3><p>&nbsp;</p></li>
+        </ol>
+      </div>
+      <div class="program-foot"><a class="pill" href="program.html" data-magnetic>The full program <span class="arrow">→</span></a></div>
+    </section>
+
+    <!-- ============ 06 · THE FEED — hold to put it down ============ -->
+    <section class="feed-sec" id="feed">
+      <div class="phone" id="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="feed" id="feedCol">
+            <!-- posts are cloned by home.js so the feed never ends -->
+            <article class="post"><header><i></i><b>@everyone_else</b></header><div class="slot" data-img="INDEX/feed-1.jpg" data-ratio="1/1"><span class="slot-label">feed-1.jpg<small>1:1</small></span></div><footer>♡ 2,481 · <span>someone's perfect life</span></footer></article>
+            <article class="post"><header><i></i><b>@your_ex</b></header><div class="slot" data-img="INDEX/feed-2.jpg" data-ratio="1/1"><span class="slot-label">feed-2.jpg<small>1:1</small></span></div><footer>♡ 302 · <span>doing great, apparently</span></footer></article>
+            <article class="post"><header><i></i><b>@sponsored</b></header><div class="slot" data-img="INDEX/feed-3.jpg" data-ratio="1/1"><span class="slot-label">feed-3.jpg<small>1:1</small></span></div><footer>♡ 9,999+ · <span>you need this. you don't.</span></footer></article>
+            <article class="post"><header><i></i><b>@friend_of_a_friend</b></header><div class="slot" data-img="INDEX/feed-4.jpg" data-ratio="1/1"><span class="slot-label">feed-4.jpg<small>1:1</small></span></div><footer>♡ 57 · <span>a party you weren't at</span></footer></article>
+          </div>
+          <div class="phone-dark" id="phoneDark">
+            <p class="pd-small mono">screen off</p>
+            <p class="pd-big">there you are.</p>
+            <p class="pd-small mono" id="offTime">00:00 offline</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feed-copy">
+        <p class="kicker" data-scramble>06 · <b>the first ten seconds</b></p>
+        <h2 class="h-big" data-split>put it<br>down.</h2>
+        <p class="lead reveal">The feed is built so that it never ends. That's not a design choice, it's the business model. The only way to finish it is to stop.</p>
+        <button class="hold" id="holdBtn" data-cursor="hold">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29"/><circle class="hold-ring" id="holdRing" cx="32" cy="32" r="29"/></svg>
+          <span id="holdLabel">hold to put it down</span>
+        </button>
+        <p class="hold-sub mono" id="holdSub">press and hold · 3 seconds · you can do this</p>
+      </div>
+    </section>
+
+    <!-- ============ 07 · LET IT ALL GO ============ -->
+    <section class="letgo" id="letgo">
+      <div class="letgo-bg">
+        <div class="slot" data-img="LET-GO/hero.jpg" data-ratio="16/9" data-alt="A girl with pink hair leaning on a pink car">
+          <span class="slot-label">LET-GO/hero.jpg<small>wide, pink, sunny, a car · 16:9</small></span>
+        </div>
+      </div>
+      <div class="letgo-inner">
+        <p class="kicker" data-scramble>07 · <b>leave it here</b></p>
+        <h2 class="letgo-title" aria-label="let it all go"><span>let</span> <span>it all</span> <span>go</span></h2>
+        <form class="letgo-form" id="letgoForm" autocomplete="off">
+          <label for="letgoInput" class="mono">what are you leaving behind?</label>
+          <div class="letgo-row">
+            <input id="letgoInput" maxlength="40" placeholder="3am scrolling, being perfect, his spotify…">
+            <button class="pill solid" type="submit" data-magnetic>let go <span class="arrow">↑</span></button>
+          </div>
+        </form>
+        <div class="letgo-fly" id="letgoFly" aria-live="polite"></div>
+        <p class="mono letgo-left">other guests left: </p>
+        <ul class="letgo-chips" id="letgoChips"></ul>
+        <a class="text-link" href="let-go.html">the full ritual →</a>
+      </div>
+    </section>
+
+    <!-- ============ 08 · GUESTBOOK ============ -->
+    <section class="guestbook" id="guestbook">
+      <div class="gb-head">
+        <p class="kicker" data-scramble>08 · <b>the guestbook</b></p>
+        <h2 class="h-big" data-split>reviews <span class="soft">(handwritten, scanned and posted by us. they don't have phones anymore.)</span></h2>
+        <p class="mono gb-hint">pick them up. move them around. nobody's watching.</p>
+      </div>
+      <div class="gb-grid" id="gbGrid">
+        <figure class="gb-card" style="--r:-3deg" data-cursor="drag">
+          <p class="gb-stars">★★★★★</p>
+          <blockquote>I forgot my password on day two. Best thing that ever happened to me.</blockquote>
+          <figcaption class="mono">giulia, 24 · recovering doomscroller</figcaption>
+        </figure>
+        <figure class="gb-card gb-photo" style="--r:2deg" data-cursor="drag">
+          <div class="slot" data-img="INDEX/guest-1.jpg" data-ratio="1/1"><span class="slot-label">guest-1.jpg<small>polaroid, flash, 1:1</small></span></div>
+          <figcaption class="script">day five, no filter</figcaption>
+        </figure>
+        <figure class="gb-card" style="--r:1.5deg" data-cursor="drag">
+          <p class="gb-stars">★★★★☆</p>
+          <blockquote>Took one star off because I had to talk to my own thoughts. They were rude at first. We're friends now.</blockquote>
+          <figcaption class="mono">nico, 29 · ex power user</figcaption>
+        </figure>
+        <figure class="gb-card gb-pink" style="--r:-2deg" data-cursor="drag">
+          <p class="gb-stars">★★★★★</p>
+          <blockquote>I watched a sunset and didn't post it. Nobody knows it happened. It's mine.</blockquote>
+          <figcaption class="mono">ama, 21 · private account (now: no account)</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ 09 · FREE — the esc key works now ============ -->
+    <section class="free" id="free">
+      <div class="free-photo">
+        <div class="slot" data-img="INDEX/day-7.jpg" data-ratio="16/10" data-blocks data-alt="Hands out of a car sunroof on the motorway">
+          <span class="slot-label">free.jpg<small>hands out of the sunroof · 16:10</small></span>
+        </div>
+        <p class="free-word" aria-hidden="true" data-chars>free</p>
+      </div>
+      <div class="free-copy">
+        <p class="kicker" data-scramble>09 · <b>signal: none</b></p>
+        <p class="free-line">you made it to the bottom. <span class="soft">most people don't.</span></p>
+        <p class="free-line small">the esc key works now.</p>
+        <button class="esc-key esc-free" id="freeEsc" data-magnetic data-cursor="bye ♡"><span>esc</span></button>
+        <p class="mono free-or">or <a class="text-link" href="check-in.html">check in for seven days →</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="ft-top">
+      <div class="ft-col">
+        <p class="ft-kicker">from the guestbook</p>
+        <p class="ft-quote">“I came for the silence. I stayed for the silence.”<span>— a guest, probably</span></p>
+        <p class="ft-quote">“0 bars. 10/10.”<span>— the wifi router, retired</span></p>
+      </div>
+      <div class="ft-col ft-center">
+        <p class="ft-kicker">LOG.OFF retreat</p>
+        <p class="ft-quote">a seven-day retreat for<br>people who can't press esc.</p>
+        <p class="ft-promise">no wifi · no signal · no regrets</p>
+      </div>
+      <div class="ft-col">
+        <p class="ft-kicker">index</p>
+        <ul class="ft-links">
+          <li><a href="program.html">The program</a></li>
+          <li><a href="retreat.html">The house</a></li>
+          <li><a href="check-in.html">Check in</a></li>
+          <li><a href="let-go.html">Let it go</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="privacy.html">What this device remembers</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ft-word" id="ftWord" aria-hidden="true">LOG.OFF</p>
+    <div class="ft-bottom">
+      <p>© 2026 LOG.OFF · a fictional retreat · nothing leaves your browser</p>
+      <p class="ft-sign">concept, design &amp; code by <span class="script">ghostly.grl</span> ♥</p>
+      <a href="#top" class="text-link" data-top>back to the top</a>
+    </div>
+  </footer>
+
+  <!-- ============ LOG OFF screen ============ -->
+  <div class="logoff" id="logoff" role="dialog" aria-modal="true" aria-label="Logged off" aria-hidden="true">
+    <canvas id="logoffSky"></canvas>
+    <div class="logoff-inner">
+      <p class="logoff-line">logging off… done.</p>
+      <p class="logoff-big">see you never</p>
+      <p class="logoff-line">close the tab. we mean it. ♡</p>
+      <button class="pill" id="logoffBack">ok fine, take me back</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+  <!--
+   *    /\_/\      +
+       ( o.o )   <3  ghostly.grl
+   +    > ^ <          *
+-->
+</html>

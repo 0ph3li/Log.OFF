@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ — LOG.OFF</title>
+  <meta name="description" content="You have questions. We have a landline. Everything about the LOG.OFF retreat: what to bring, where your phone goes, the house, and what happens after.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Instrument+Serif:ital@0;1&family=Pinyon+Script&family=Space+Mono:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/faq.css">
+</head>
+<body id="top" data-page="faq">
+
+  <!-- shared SVG: four-point star + cursor arrow -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="star" viewBox="0 0 24 24"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></symbol>
+      <symbol id="arrow" viewBox="0 0 14 20"><path d="M1 1 L1 16 L4.6 12.6 L7.2 18.6 L9.8 17.4 L7.3 11.6 L12.4 11.6 Z" fill="#fff" stroke="#0d0c0d" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ LOADER ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <p class="loader-word">LOG.OFF<span class="blink">_</span></p>
+      <div class="loader-grid" id="loaderGrid"></div>
+      <p class="loader-line mono"><span id="loaderMsg">closing 47 tabs</span><span><span id="loaderCount">0</span>%</span></p>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+  <div class="pings" id="pings" aria-live="off"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="topnav" id="topnav">
+    <a class="nav-logo" href="index.html" aria-label="LOG.OFF — home">LOG.OFF<span class="blink">_</span></a>
+    <nav aria-label="Main">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"><span data-t="Home">Home</span></a></li>
+        <li><a href="program.html"><span data-t="The program">The program</span></a></li>
+        <li><a href="retreat.html"><span data-t="The house">The house</span></a></li>
+        <li><a href="let-go.html"><span data-t="Let it go">Let it go</span></a></li>
+        <li><a href="faq.html" aria-current="page"><span data-t="FAQ">FAQ</span></a></li>
+      </ul>
+    </nav>
+    <div class="status" aria-label="Your connection">
+      <span class="status-time">screen time <b id="screenTime">00:00:00</b></span>
+      <span class="bars" id="bars" title="signal"><i></i><i></i><i></i><i></i></span>
+      <span class="battery" id="battery" title="social battery"><i></i></span>
+    </div>
+    <a class="pill solid nav-cta" href="check-in.html" data-magnetic>Check in <span class="arrow">→</span></a>
+    <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span></button>
+  </header>
+  <div class="menu" id="menu" aria-hidden="true">
+    <button class="pill menu-close" id="menuClose">close ×</button>
+  </div>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="f-hero" id="hero">
+      <div class="f-hero-copy">
+        <p class="kicker" data-scramble>help desk · <b>open 9 to 5, by landline</b></p>
+        <h1 class="f-title" aria-label="FAQ"><span data-chars>FAQ</span></h1>
+        <p class="f-sub" data-split>you have questions.<br>we have a landline.</p>
+      </div>
+      <figure class="f-hero-figure">
+        <div class="slot" data-img="FAQ/hero.jpg" data-ratio="1/1" data-blocks data-alt="An old record player, a record spinning">
+          <span class="slot-label">FAQ/hero.jpg<small>the help desk record player · 1:1</small></span>
+        </div>
+        <figcaption class="mono">fig. 01 — the help desk. no hold music. just this, on repeat.</figcaption>
+      </figure>
+      <span class="star" style="top:20%;left:46%"><svg><use href="#star"/></svg></span>
+      <span class="star" style="bottom:14%;left:6%;width:14px;height:14px;animation-delay:-1.5s"><svg><use href="#star"/></svg></span>
+    </section>
+
+    <div class="tape" data-tape>
+      <div class="tape-track">
+        <span>no, there's no wifi <b>//</b> yes, really <b>//</b> no, not even in the cellar <b>//</b> yes, you'll be fine <b>//</b></span>
+      </div>
+    </div>
+
+    <!-- ============ SEARCH + LIST ============ -->
+    <section class="faq" id="faq">
+      <div class="faq-bar" id="faqBar">
+        <label class="search">
+          <span class="sr-only">Search the questions</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M15 15 L22 22"/></svg>
+          <input id="faqSearch" type="search" placeholder="search: wifi, kindle, work, mum…" autocomplete="off">
+          <span class="search-count mono" id="faqCount">0 answers</span>
+        </label>
+        <div class="chips" role="tablist" aria-label="Topics" id="faqChips">
+          <button class="chip on" data-cat="all" role="tab" aria-selected="true">all</button>
+          <button class="chip" data-cat="before" role="tab" aria-selected="false">before you come</button>
+          <button class="chip" data-cat="phone" role="tab" aria-selected="false">the phone</button>
+          <button class="chip" data-cat="house" role="tab" aria-selected="false">the house</button>
+          <button class="chip" data-cat="after" role="tab" aria-selected="false">after</button>
+        </div>
+      </div>
+      <ol class="qa" id="qaList"></ol>
+      <div class="qa-empty" id="qaEmpty" hidden>
+        <p class="script">nothing.</p>
+        <p class="mono">no answer for that one. try the postcard below, or just come and ask.</p>
+      </div>
+    </section>
+
+    <!-- ============ BREAK GLASS ============ -->
+    <section class="glass-sec" id="emergency">
+      <div class="glass-copy">
+        <p class="kicker" data-scramble>the one everybody asks · <b>emergencies</b></p>
+        <h2 class="h-big" data-split>but what if<br>i really need<br>my phone?</h2>
+        <p class="lead reveal">Then you'll have it. Nobody is locked in, nothing is locked away for real. But before you get the bag back, break this first.</p>
+      </div>
+      <div class="glass-box">
+        <button class="glass" id="glass" data-cursor="break">
+          <span class="glass-label"><b>IN CASE OF EMERGENCY</b><span>break glass</span></span>
+          <svg class="cracks" id="cracks" viewBox="0 0 400 533" aria-hidden="true"></svg>
+        </button>
+        <div class="glass-behind" id="glassBehind" aria-live="polite">
+          <div class="slot" data-img="FAQ/landline.jpg" data-ratio="3/4" data-alt="A white rotary phone on a lace doily, on a wooden table in the hall">
+            <span class="slot-label">FAQ/landline.jpg<small>the landline in the hall · 3:4</small></span>
+          </div>
+          <p>there's a landline in the hall. it's white, it has a dial, it works. staff are awake all night, and the bag opens in ten seconds if it has to.</p>
+          <p class="mono">real emergencies: 112 from the landline. everything else can wait until morning.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ POSTCARD ============ -->
+    <section class="ask-sec" id="ask">
+      <div class="ask-head">
+        <p class="kicker" data-scramble>still asking? · <b>write to us</b></p>
+        <h2 class="h-big" data-split>we answer<br>by post.</h2>
+        <p class="lead reveal">No chatbot, no live chat, no "a member of our team will get back to you shortly". Write your question on the card. We'll answer it by hand, in four to six weeks. It'll be worth it.</p>
+      </div>
+      <form class="postcard" id="postcard" autocomplete="off">
+        <div class="pc-left">
+          <label for="pcQ" class="mono">your question</label>
+          <textarea id="pcQ" rows="5" maxlength="200" placeholder="can i bring my cat?"></textarea>
+        </div>
+        <div class="pc-right">
+          <span class="pc-stamp" aria-hidden="true">LOG.OFF<br><b>2.4 km</b><br>no signal</span>
+          <span class="pc-postmark" id="postmark" aria-hidden="true">POSTED<br><span id="pmDate">—</span></span>
+          <label class="pc-line"><span class="mono">from</span><input id="pcName" maxlength="24" placeholder="your name"></label>
+          <p class="pc-line"><span class="mono">to</span><span class="pc-to">the help desk, the white house, the cliff</span></p>
+          <button class="pill solid" type="submit" data-magnetic>post it</button>
+        </div>
+      </form>
+      <p class="mono pc-note" id="pcNote">&nbsp;</p>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="f-cta">
+      <h2 class="f-cta-title" data-chars>no more questions.</h2>
+      <div class="f-cta-links">
+        <a class="pill solid" href="check-in.html" data-magnetic>Check in <span class="arrow">→</span></a>
+        <a class="text-link" href="index.html">back to the home</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="ft-top">
+      <div class="ft-col">
+        <p class="ft-kicker">from the guestbook</p>
+        <p class="ft-quote">“I wrote to the help desk. They answered in five weeks. I cried a bit.”<span>— bea, room 6</span></p>
+        <p class="ft-quote">“I broke the glass. It was the landline. I called my mum. She was fine.”<span>— giulia, room 1</span></p>
+      </div>
+      <div class="ft-col ft-center">
+        <p class="ft-kicker">LOG.OFF retreat</p>
+        <p class="ft-quote">a seven-day retreat for<br>people who can't press esc.</p>
+        <p class="ft-promise">no wifi · no signal · no regrets</p>
+      </div>
+      <div class="ft-col">
+        <p class="ft-kicker">index</p>
+        <ul class="ft-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="program.html">The program</a></li>
+          <li><a href="retreat.html">The house</a></li>
+          <li><a href="let-go.html">Let it go</a></li>
+          <li><a href="check-in.html">Check in</a></li>
+          <li><a href="privacy.html">What this device remembers</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ft-word" id="ftWord" aria-hidden="true">LOG.OFF</p>
+    <div class="ft-bottom">
+      <p>© 2026 LOG.OFF · a fictional retreat · nothing leaves your browser</p>
+      <p class="ft-sign">concept, design &amp; code by <span class="script">ghostly.grl</span> ♥</p>
+      <a href="#top" class="text-link">back to the top</a>
+    </div>
+  </footer>
+
+  <!-- ============ LOG OFF screen ============ -->
+  <div class="logoff" id="logoff" role="dialog" aria-modal="true" aria-label="Logged off" aria-hidden="true">
+    <canvas id="logoffSky"></canvas>
+    <div class="logoff-inner">
+      <p class="logoff-line">logging off… done.</p>
+      <p class="logoff-big">see you never</p>
+      <p class="logoff-line">close the tab. we mean it. ♡</p>
+      <button class="pill" id="logoffBack">ok fine, take me back</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/faq.js"></script>
+</body>
+  <!--
+   *    /\_/\      +
+       ( o.o )   <3  ghostly.grl
+   +    > ^ <          *
+-->
+</html>

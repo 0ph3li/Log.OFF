@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The house — LOG.OFF</title>
+  <meta name="description" content="A white house on a cliff, 2.4 km past the last bar of signal. The walk, the rooms, the lockers and the house rules of the LOG.OFF retreat.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Instrument+Serif:ital@0;1&family=Pinyon+Script&family=Space+Mono:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/retreat.css">
+</head>
+<body id="top" data-page="retreat">
+
+  <!-- shared SVG: four-point star + cursor arrow -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="star" viewBox="0 0 24 24"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></symbol>
+      <symbol id="arrow" viewBox="0 0 14 20"><path d="M1 1 L1 16 L4.6 12.6 L7.2 18.6 L9.8 17.4 L7.3 11.6 L12.4 11.6 Z" fill="#fff" stroke="#0d0c0d" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ LOADER ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <p class="loader-word">LOG.OFF<span class="blink">_</span></p>
+      <div class="loader-grid" id="loaderGrid"></div>
+      <p class="loader-line mono"><span id="loaderMsg">closing 47 tabs</span><span><span id="loaderCount">0</span>%</span></p>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+  <div class="pings" id="pings" aria-live="off"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="topnav" id="topnav">
+    <a class="nav-logo" href="index.html" aria-label="LOG.OFF — home">LOG.OFF<span class="blink">_</span></a>
+    <nav aria-label="Main">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"><span data-t="Home">Home</span></a></li>
+        <li><a href="program.html"><span data-t="The program">The program</span></a></li>
+        <li><a href="retreat.html" aria-current="page"><span data-t="The house">The house</span></a></li>
+        <li><a href="let-go.html"><span data-t="Let it go">Let it go</span></a></li>
+        <li><a href="faq.html"><span data-t="FAQ">FAQ</span></a></li>
+      </ul>
+    </nav>
+    <div class="status" aria-label="Your connection">
+      <span class="status-time">screen time <b id="screenTime">00:00:00</b></span>
+      <span class="bars" id="bars" title="signal"><i></i><i></i><i></i><i></i></span>
+      <span class="battery" id="battery" title="social battery"><i></i></span>
+    </div>
+    <a class="pill solid nav-cta" href="check-in.html" data-magnetic>Check in <span class="arrow">→</span></a>
+    <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span></button>
+  </header>
+  <div class="menu" id="menu" aria-hidden="true">
+    <button class="pill menu-close" id="menuClose">close ×</button>
+  </div>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="h-hero" id="hero">
+      <div class="h-hero-copy">
+        <p class="kicker" data-scramble>the house · <b>41°N, somewhere without 5G</b></p>
+        <h1 class="h-title" data-split>a white house<br>with no signal.</h1>
+        <p class="lead reveal">It sits on a cliff at the end of a dirt road, 2.4 km past the last bar of signal. Thick walls, small windows, one very loud sea. Nobody built it this way on purpose. It just happens to be the quietest place we could find.</p>
+        <a class="pill light" href="#walk" data-magnetic>take the walk <span class="arrow">↓</span></a>
+      </div>
+      <figure class="h-hero-figure">
+        <div class="slot" data-img="RETREAT/hero.jpg" data-ratio="4/5" data-blocks data-alt="The white house on the cliff">
+          <span class="slot-label">RETREAT/hero.jpg<small>the house, the cliff, the sky · 4:5</small></span>
+        </div>
+        <figcaption class="mono">fig. 01 — the house. the photo was taken from the last spot with signal.</figcaption>
+      </figure>
+      <span class="star" style="top:18%;left:50%"><svg><use href="#star"/></svg></span>
+      <span class="star" style="bottom:12%;left:5%;width:14px;height:14px;animation-delay:-1.4s"><svg><use href="#star"/></svg></span>
+    </section>
+
+    <div class="tape" data-tape>
+      <div class="tape-track">
+        <span>no service <b>//</b> searching… <b>//</b> no service <b>//</b> emergency calls only <b>//</b> no service <b>//</b> searching… <b>//</b></span>
+      </div>
+    </div>
+
+    <!-- ============ THE WALK — the map draws itself, the signal drops ============ -->
+    <section class="walk" id="walk">
+      <div class="walk-inner">
+        <div class="walk-head">
+          <p class="kicker" data-scramble>01 · <b>the walk</b></p>
+          <h2 class="h-big" data-split>2.4 km<br>to nothing.</h2>
+          <p class="mono walk-hint">scroll to walk ↓</p>
+        </div>
+
+        <div class="map-wrap">
+          <svg class="map" id="map" viewBox="0 0 1000 620" aria-label="A map from the bus stop to the house">
+            <!-- the sea -->
+            <path class="sea" d="M760 0 C720 120 800 200 740 300 C690 380 760 470 720 620 L1000 620 L1000 0 Z"/>
+            <g class="waves">
+              <path d="M820 80 q14 -10 28 0 t28 0"/><path d="M880 210 q14 -10 28 0 t28 0"/><path d="M830 360 q14 -10 28 0 t28 0"/><path d="M900 480 q14 -10 28 0 t28 0"/>
+            </g>
+            <!-- fields -->
+            <g class="hatch">
+              <path d="M90 470 l60 -40 M110 490 l60 -40 M130 510 l60 -40"/>
+              <path d="M420 120 l50 -34 M440 140 l50 -34 M460 160 l50 -34"/>
+              <path d="M520 470 l40 -28 M540 490 l40 -28"/>
+            </g>
+            <!-- the road -->
+            <path class="route-bg" d="M70 560 C200 540 260 470 330 430 C420 380 380 300 470 260 C560 220 600 300 660 240 C700 200 690 140 720 110"/>
+            <path class="route" id="route" d="M70 560 C200 540 260 470 330 430 C420 380 380 300 470 260 C560 220 600 300 660 240 C700 200 690 140 720 110"/>
+            <!-- the house -->
+            <g class="house" transform="translate(705 70)">
+              <path d="M0 30 L22 10 L44 30 L44 58 L0 58 Z"/><rect x="17" y="40" width="10" height="18"/>
+            </g>
+            <g id="marks"></g>
+          </svg>
+
+          <aside class="signal" aria-live="polite">
+            <p class="signal-net" id="sigNet">5G</p>
+            <span class="signal-bars" id="sigBars"><i></i><i></i><i></i><i></i><i></i></span>
+            <p class="signal-km"><b id="sigKm">2.4</b> km to the house</p>
+            <p class="signal-msg mono" id="sigMsg">you still have signal. enjoy it.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THE ROOMS — a floor plan you can click ============ -->
+    <section class="rooms" id="rooms">
+      <div class="rooms-head">
+        <p class="kicker" data-scramble>02 · <b>the rooms</b></p>
+        <h2 class="h-big" data-split>six rooms.<br>zero sockets<br>by the bed.</h2>
+        <p class="mono rooms-hint">tap a room</p>
+      </div>
+      <div class="rooms-grid">
+        <svg class="plan" id="plan" viewBox="0 0 600 400" role="tablist" aria-label="Floor plan">
+          <g class="room" data-room="0" role="tab" tabindex="0" aria-selected="true"><rect x="10" y="10" width="170" height="130"/><text x="95" y="80">the lockers</text></g>
+          <g class="room" data-room="1" role="tab" tabindex="-1"><rect x="180" y="10" width="260" height="170"/><text x="310" y="100">the long table</text></g>
+          <g class="room" data-room="2" role="tab" tabindex="-1"><rect x="440" y="10" width="150" height="170"/><text x="515" y="100">reading room</text></g>
+          <g class="room" data-room="3" role="tab" tabindex="-1"><rect x="10" y="140" width="170" height="250"/><text x="95" y="270">bedrooms</text></g>
+          <g class="room" data-room="4" role="tab" tabindex="-1"><rect x="180" y="180" width="160" height="210"/><text x="260" y="290">the clock room</text></g>
+          <g class="room" data-room="5" role="tab" tabindex="-1"><rect x="340" y="180" width="250" height="210"/><text x="465" y="290">stairs to the roof</text></g>
+          <path class="door" d="M150 140 a30 30 0 0 1 30 -30"/>
+          <text class="plan-n" x="586" y="396">N ↑</text>
+        </svg>
+
+        <article class="room-panel" id="roomPanel" aria-live="polite">
+          <div class="room-photo" id="roomPhoto"></div>
+          <p class="room-n mono" id="roomN">room 01 / 06</p>
+          <h3 class="room-title" id="roomTitle">the lockers</h3>
+          <p class="room-text" id="roomText"></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ THE LOCKERS ============ -->
+    <section class="lockers" id="lockers">
+      <div class="lockers-head">
+        <p class="kicker" data-scramble>03 · <b>the lockers</b></p>
+        <h2 class="h-big" data-split>everyone's phone<br>is asleep here.</h2>
+        <p class="lead reveal">Twelve pink lockers by the door. One phone each, in a sealed bag, with the screen facing the wall. They're still getting notifications. Nobody reads them.</p>
+        <p class="mono pile">notifications waiting inside right now: <b id="pile">18,442</b></p>
+      </div>
+      <div class="locker-grid" id="lockerGrid"></div>
+    </section>
+
+    <!-- ============ IN YOUR ROOM / NOT IN YOUR ROOM ============ -->
+    <section class="inv" id="inv">
+      <p class="kicker" data-scramble>04 · <b>your room</b></p>
+      <div class="inv-grid">
+        <div class="inv-col">
+          <h2 class="h-mid" data-split>in your room</h2>
+          <ul class="inv-list">
+            <li><span>a bed</span><em>(a good one)</em></li>
+            <li><span>a window</span><em>(facing the sea)</em></li>
+            <li><span>a book you didn't choose</span></li>
+            <li><span>a notebook, a pencil</span></li>
+            <li><span>an alarm clock</span><em>(the kind that ticks)</em></li>
+            <li><span>a jumper</span><em>(in case you forgot yours)</em></li>
+          </ul>
+        </div>
+        <div class="inv-col not">
+          <h2 class="h-mid" data-split>not in your room</h2>
+          <ul class="inv-list">
+            <li><span>a tv</span></li>
+            <li><span>a socket by the bed</span><em>(on purpose)</em></li>
+            <li><span>wifi</span></li>
+            <li><span>a mirror you'd film yourself in</span></li>
+            <li><span>a ring light</span></li>
+            <li><span>your phone</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HOUSE RULES ============ -->
+    <section class="rules" id="rules">
+      <div class="rules-head">
+        <p class="kicker" data-scramble>05 · <b>house rules</b></p>
+        <h2 class="h-big" data-split>seven rules.<br>be nice about it.</h2>
+      </div>
+      <ol class="rule-list">
+        <li><span class="rule-n">01</span><p>phones sleep in the lockers. they don't come to dinner.</p></li>
+        <li><span class="rule-n">02</span><p>the clock is the only screen in the house.</p></li>
+        <li><span class="rule-n">03</span><p>no photos of the food. eat it while it's warm.</p></li>
+        <li><span class="rule-n">04</span><p>if you're bored, stay bored. something will happen.</p></li>
+        <li><span class="rule-n">05</span><p>real names only. nobody here is called xx_anything.</p></li>
+        <li><span class="rule-n">06</span><p>the roof is for sunsets, not for content.</p></li>
+        <li><span class="rule-n">07</span><p>you can leave whenever you want. (nobody does.)</p></li>
+      </ol>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="door-cta" id="door">
+      <div class="slot" data-img="PROGRAM/hero.jpg" data-ratio="16/10" data-blocks data-alt="A girl with long dark hair walking along the sea wall, the wind in her hair">
+        <span class="slot-label">PROGRAM/hero.jpg<small>arriving, by the sea wall · 16:10</small></span>
+      </div>
+      <div class="door-copy">
+        <h2 class="door-title" data-chars>the door is open.</h2>
+        <div class="door-links">
+          <a class="pill solid" href="check-in.html" data-magnetic>Check in <span class="arrow">→</span></a>
+          <a class="text-link" href="let-go.html">next: let it go →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="ft-top">
+      <div class="ft-col">
+        <p class="ft-kicker">from the guestbook</p>
+        <p class="ft-quote">“The walk from the bus stop is the best part. You can feel the bars leaving.”<span>— ama, room 2</span></p>
+        <p class="ft-quote">“There's no socket by the bed. I was furious. Then I slept nine hours.”<span>— nico, room 4</span></p>
+      </div>
+      <div class="ft-col ft-center">
+        <p class="ft-kicker">LOG.OFF retreat</p>
+        <p class="ft-quote">a seven-day retreat for<br>people who can't press esc.</p>
+        <p class="ft-promise">no wifi · no signal · no regrets</p>
+      </div>
+      <div class="ft-col">
+        <p class="ft-kicker">index</p>
+        <ul class="ft-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="program.html">The program</a></li>
+          <li><a href="check-in.html">Check in</a></li>
+          <li><a href="let-go.html">Let it go</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="privacy.html">What this device remembers</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ft-word" id="ftWord" aria-hidden="true">LOG.OFF</p>
+    <div class="ft-bottom">
+      <p>© 2026 LOG.OFF · a fictional retreat · nothing leaves your browser</p>
+      <p class="ft-sign">concept, design &amp; code by <span class="script">ghostly.grl</span> ♥</p>
+      <a href="#top" class="text-link">back to the top</a>
+    </div>
+  </footer>
+
+  <!-- ============ LOG OFF screen ============ -->
+  <div class="logoff" id="logoff" role="dialog" aria-modal="true" aria-label="Logged off" aria-hidden="true">
+    <canvas id="logoffSky"></canvas>
+    <div class="logoff-inner">
+      <p class="logoff-line">logging off… done.</p>
+      <p class="logoff-big">see you never</p>
+      <p class="logoff-line">close the tab. we mean it. ♡</p>
+      <button class="pill" id="logoffBack">ok fine, take me back</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/retreat.js"></script>
+</body>
+  <!--
+   *    /\_/\      +
+       ( o.o )   <3  ghostly.grl
+   +    > ^ <          *
+-->
+</html>

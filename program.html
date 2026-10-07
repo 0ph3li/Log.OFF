@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The program — LOG.OFF</title>
+  <meta name="description" content="Seven days, less every day. The LOG.OFF program, hour by hour: withdrawal, phantom vibrations, boredom, the sunset you didn't film, strangers, letters, and day seven.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Instrument+Serif:ital@0;1&family=Pinyon+Script&family=Space+Mono:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/program.css">
+</head>
+<body id="top" data-page="program">
+
+  <!-- shared SVG: four-point star + cursor arrow -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="star" viewBox="0 0 24 24"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></symbol>
+      <symbol id="arrow" viewBox="0 0 14 20"><path d="M1 1 L1 16 L4.6 12.6 L7.2 18.6 L9.8 17.4 L7.3 11.6 L12.4 11.6 Z" fill="#fff" stroke="#0d0c0d" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ LOADER ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <p class="loader-word">LOG.OFF<span class="blink">_</span></p>
+      <div class="loader-grid" id="loaderGrid"></div>
+      <p class="loader-line mono"><span id="loaderMsg">closing 47 tabs</span><span><span id="loaderCount">0</span>%</span></p>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+  <div class="pings" id="pings" aria-live="off"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="topnav" id="topnav">
+    <a class="nav-logo" href="index.html" aria-label="LOG.OFF — home">LOG.OFF<span class="blink">_</span></a>
+    <nav aria-label="Main">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"><span data-t="Home">Home</span></a></li>
+        <li><a href="program.html" aria-current="page"><span data-t="The program">The program</span></a></li>
+        <li><a href="retreat.html"><span data-t="The house">The house</span></a></li>
+        <li><a href="let-go.html"><span data-t="Let it go">Let it go</span></a></li>
+        <li><a href="faq.html"><span data-t="FAQ">FAQ</span></a></li>
+      </ul>
+    </nav>
+    <div class="status" aria-label="Your connection">
+      <span class="status-time">screen time <b id="screenTime">00:00:00</b></span>
+      <span class="bars" id="bars" title="signal"><i></i><i></i><i></i><i></i></span>
+      <span class="battery" id="battery" title="social battery"><i></i></span>
+    </div>
+    <a class="pill solid nav-cta" href="check-in.html" data-magnetic>Check in <span class="arrow">→</span></a>
+    <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span></button>
+  </header>
+  <div class="menu" id="menu" aria-hidden="true">
+    <button class="pill menu-close" id="menuClose">close ×</button>
+  </div>
+
+  <!-- ============ DAY RAIL — which day you're on ============ -->
+  <aside class="rail" id="rail" aria-label="Days">
+    <p class="rail-now"><span>day</span><b id="railNum">00</b><span>/07</span></p>
+    <ol class="rail-days">
+      <li><a href="#day-1" data-cursor="day 1">01</a></li>
+      <li><a href="#day-2" data-cursor="day 2">02</a></li>
+      <li><a href="#day-3" data-cursor="day 3">03</a></li>
+      <li><a href="#day-4" data-cursor="day 4">04</a></li>
+      <li><a href="#day-5" data-cursor="day 5">05</a></li>
+      <li><a href="#day-6" data-cursor="day 6">06</a></li>
+      <li><a href="#day-7" data-cursor="day 7">07</a></li>
+    </ol>
+    <span class="rail-bar"><i id="railBar"></i></span>
+  </aside>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="p-hero" id="hero">
+      <div class="p-hero-copy">
+        <p class="kicker" data-scramble>the program · <b>7 days · 6 nights · 0 bars</b></p>
+        <h1 class="p-title" data-split>seven days.<br>less every day.</h1>
+        <p class="lead reveal">Every day of the retreat takes something away: a notification, a habit, a reflex, a little bit of noise. By day seven there's almost nothing left. That's the point. Here's how it goes, hour by hour.</p>
+        <ol class="strip" aria-label="Jump to a day">
+          <li style="--n:1"><a href="#day-1" data-cursor="day 1"><span>01</span><small>withdrawal</small></a></li>
+          <li style="--n:2"><a href="#day-2" data-cursor="day 2"><span>02</span><small>phantom</small></a></li>
+          <li style="--n:3"><a href="#day-3" data-cursor="day 3"><span>03</span><small>boredom</small></a></li>
+          <li style="--n:4"><a href="#day-4" data-cursor="day 4"><span>04</span><small>sunset</small></a></li>
+          <li style="--n:5"><a href="#day-5" data-cursor="day 5"><span>05</span><small>strangers</small></a></li>
+          <li style="--n:6"><a href="#day-6" data-cursor="day 6"><span>06</span><small>letters</small></a></li>
+          <li style="--n:7"><a href="#day-7" data-cursor="day 7"><span>07</span><small>free</small></a></li>
+        </ol>
+      </div>
+      <figure class="p-hero-figure">
+        <div class="slot" data-img="PROGRAM/hero.jpg" data-ratio="4/5" data-blocks data-alt="A guest on the first morning, still holding on">
+          <span class="slot-label">PROGRAM/hero.jpg<small>first morning · 4:5</small></span>
+        </div>
+        <figcaption class="mono">fig. 01 — the first morning, by the sea wall. she asked for the wifi password twice.</figcaption>
+      </figure>
+      <span class="star" style="top:20%;left:48%"><svg><use href="#star"/></svg></span>
+      <span class="star" style="bottom:12%;left:6%;width:14px;height:14px;animation-delay:-1.6s"><svg><use href="#star"/></svg></span>
+    </section>
+
+    <div class="tape" data-tape>
+      <div class="tape-track">
+        <span>house rules <b>//</b> no phones <b>//</b> no wifi <b>//</b> no stories <b>//</b> no "just checking" <b>//</b> no photos of the food <b>//</b> no screenshots of the sunset <b>//</b> yes naps <b>//</b></span>
+      </div>
+    </div>
+
+    <!-- ============ DAY 01 · withdrawal ============ -->
+    <section class="day-sec" id="day-1" style="--n:1" data-day="1">
+      <header class="day-head">
+        <p class="day-num" aria-hidden="true">01</p>
+        <div>
+          <p class="kicker" data-scramble>day 01 · <b>symptom: reaching</b></p>
+          <h2 class="day-title" data-split>withdrawal</h2>
+        </div>
+      </header>
+      <div class="day-body">
+        <figure class="day-figure">
+          <div class="slot" data-img="INDEX/day-1.jpg" data-ratio="4/5" data-alt="A phone with a cross on it, held for the last time">
+            <span class="slot-label">INDEX/day-1.jpg<small>4:5</small></span>
+          </div>
+          <figcaption class="mono">the last photo of the phone before the bag.</figcaption>
+        </figure>
+        <div class="day-copy">
+          <p class="lead reveal">You hand it over at the door. It goes into a sealed pink bag, then into a locker with your name on it. For the rest of the day your hand keeps looking for it: in your pocket, on the table, under the pillow. Forty-three times, on average.</p>
+          <ul class="timetable reveal">
+            <li><time>09:00</time><span>arrival. the phone goes in the bag.</span></li>
+            <li><time>09:04</time><span>first reach. there's nothing there.</span></li>
+            <li><time>13:00</time><span>lunch, no photos. (the food was fine.)</span></li>
+            <li><time>17:30</time><span>you ask what time it is. there's a clock on every wall.</span></li>
+            <li><time>23:00</time><span>you fall asleep without scrolling. it takes a while.</span></li>
+          </ul>
+          <div class="toy toy-bag">
+            <button class="bag" id="bag" data-cursor="open?">
+              <span class="bag-seal">SEALED · LOG.OFF · DAY 1–7</span>
+              <svg class="bag-phone" viewBox="0 0 40 70" aria-hidden="true"><rect x="2" y="2" width="36" height="66" rx="8" fill="none" stroke="currentColor" stroke-width="3"/><rect x="14" y="7" width="12" height="3" rx="1.5" fill="currentColor"/></svg>
+            </button>
+            <p class="mono toy-note">reaches today: <b id="reachCount">0</b> · average guest: 43</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DAY 02 · phantom vibrations ============ -->
+    <section class="day-sec" id="day-2" style="--n:2" data-day="2">
+      <header class="day-head">
+        <p class="day-num" aria-hidden="true">02</p>
+        <div>
+          <p class="kicker" data-scramble>day 02 · <b>symptom: buzzing</b></p>
+          <h2 class="day-title" data-split>phantom<br>vibrations</h2>
+        </div>
+      </header>
+      <div class="day-body flip">
+        <figure class="day-figure">
+          <div class="slot" data-img="INDEX/day-2.jpg" data-ratio="1/1" data-alt="Hands pressed together, black leather sleeves">
+            <span class="slot-label">INDEX/day-2.jpg<small>1:1</small></span>
+          </div>
+          <figcaption class="mono">holding hands with yourself, so they stop looking.</figcaption>
+        </figure>
+        <div class="day-copy">
+          <p class="lead reveal">Your leg buzzes. You check. Nothing. It buzzes again during breakfast, during the walk, during the very quiet part of yoga. We call it the ghost of group chats past. It leaves on its own, usually by the evening.</p>
+          <ul class="timetable reveal">
+            <li><time>07:40</time><span>buzz. nothing.</span></li>
+            <li><time>10:00</time><span>a walk along the cliff. buzz. nothing.</span></li>
+            <li><time>15:00</time><span>yoga. the instructor says "notice the urge". you notice it.</span></li>
+            <li><time>21:00</time><span>you realise it hasn't buzzed in an hour.</span></li>
+          </ul>
+          <div class="toy toy-buzz" id="buzzBox">
+            <p class="buzz-word" id="buzzWord" aria-hidden="true">bzz</p>
+            <button class="pill" id="checkPocket" data-cursor="check">check your pocket</button>
+            <p class="mono toy-note" id="buzzNote">keep reading. it'll buzz.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DAY 03 · boredom ============ -->
+    <section class="day-sec" id="day-3" style="--n:3" data-day="3">
+      <header class="day-head">
+        <p class="day-num" aria-hidden="true">03</p>
+        <div>
+          <p class="kicker" data-scramble>day 03 · <b>symptom: nothing</b></p>
+          <h2 class="day-title" data-split>boredom</h2>
+        </div>
+      </header>
+      <div class="day-body">
+        <figure class="day-figure">
+          <div class="slot" data-img="INDEX/day-3.jpg" data-ratio="3/4" data-alt="A girl lying on a white bed, staring at the ceiling">
+            <span class="slot-label">INDEX/day-3.jpg<small>3:4</small></span>
+          </div>
+          <figcaption class="mono">11:14 — 13:02. ceiling. a very good ceiling.</figcaption>
+        </figure>
+        <div class="day-copy">
+          <p class="lead reveal">The hardest, holiest day. There is nothing to do and nobody to tell about it. Most guests try to leave on day three. Then, somewhere in the empty afternoon, something grows. Usually an idea. Sometimes a nap.</p>
+          <ul class="timetable reveal">
+            <li><time>09:00</time><span>no plans. on purpose.</span></li>
+            <li><time>11:14</time><span>you lie down and look at the ceiling.</span></li>
+            <li><time>14:00</time><span>you want to leave. you don't.</span></li>
+            <li><time>16:20</time><span>an idea arrives. you have nowhere to post it. you keep it.</span></li>
+          </ul>
+          <div class="toy toy-bored">
+            <p class="bored-time" id="boredTime">00:00</p>
+            <p class="mono toy-note" id="boredNote">don't touch anything. the clock only moves if you do nothing.</p>
+            <p class="bored-idea" id="boredIdea" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DAY 04 · the sunset you didn't film ============ -->
+    <section class="day-sec" id="day-4" style="--n:4" data-day="4">
+      <header class="day-head">
+        <p class="day-num" aria-hidden="true">04</p>
+        <div>
+          <p class="kicker" data-scramble>day 04 · <b>symptom: wanting proof</b></p>
+          <h2 class="day-title" data-split>the sunset<br>you didn't film</h2>
+        </div>
+      </header>
+      <div class="day-body flip">
+        <figure class="day-figure sunset" id="sunset">
+          <div class="slot" data-img="INDEX/day-4.jpg" data-ratio="4/5" data-alt="A purple sunset over the city, sneakers on the edge of a roof">
+            <span class="slot-label">INDEX/day-4.jpg<small>4:5</small></span>
+          </div>
+          <div class="viewfinder" id="viewfinder" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+            <span class="vf-rec">● REC</span><span class="vf-time" id="vfTime">00:00:00</span>
+          </div>
+          <figcaption class="mono" id="sunsetCap">move over the picture. you know what you want to do.</figcaption>
+        </figure>
+        <div class="day-copy">
+          <p class="lead reveal">Everyone goes up to the roof at seven. Everyone's hands do the same thing: they rise, frame the sky, and find nothing to hold. On day four, the sky stops being content and starts being the sky again. It was better than the photo would have been. You'll have to trust us.</p>
+          <ul class="timetable reveal">
+            <li><time>18:40</time><span>the roof. everyone's there. nobody talks.</span></li>
+            <li><time>19:12</time><span>the sun touches the sea. your hands rise.</span></li>
+            <li><time>19:13</time><span>your hands come down.</span></li>
+            <li><time>19:30</time><span>it's gone. you were there for all of it.</span></li>
+          </ul>
+          <div class="toy">
+            <button class="pill solid" id="filmIt" data-cursor="no.">film it</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DAY 05 · talking to strangers ============ -->
+    <section class="day-sec" id="day-5" style="--n:5" data-day="5">
+      <header class="day-head">
+        <p class="day-num" aria-hidden="true">05</p>
+        <div>
+          <p class="kicker" data-scramble>day 05 · <b>symptom: talking</b></p>
+          <h2 class="day-title" data-split>talking to<br>strangers</h2>
+        </div>
+      </header>
+      <div class="day-body">
+        <figure class="day-figure">
+          <div class="slot" data-img="INDEX/day-5.jpg" data-ratio="1/1" data-alt="Two girls on a balcony at night, looking at the city">
+            <span class="slot-label">INDEX/day-5.jpg<small>1:1</small></span>
+          </div>
+          <figcaption class="mono">met at breakfast. still talking at 2am.</figcaption>
+        </figure>
+        <div class="day-copy">
+          <p class="lead reveal">No usernames, no mutuals, no checking someone's profile before you say hi. Just a name, a face, and a very long dinner. You'll forget what most of them looked like online. You'll remember what they sounded like.</p>
+          <ul class="timetable reveal">
+            <li><time>08:30</time><span>name stickers at breakfast. real names only.</span></li>
+            <li><time>12:00</time><span>a walk with someone you'd never have followed.</span></li>
+            <li><time>20:00</time><span>the long table. nobody looks down.</span></li>
+            <li><time>02:00</time><span>still talking.</span></li>
+          </ul>
+          <div class="toy toy-name">
+            <form id="nameForm" autocomplete="off">
+              <label for="nameInput" class="mono">your name. not your username.</label>
+              <div class="name-row">
+                <input id="nameInput" maxlength="18" placeholder="e.g. martina">
+                <button class="pill solid" type="submit" data-magnetic>stick it on</button>
+              </div>
+            </form>
+            <div class="stickers" id="stickers">
+              <div class="sticker" style="--r:-6deg" data-cursor="drag"><b>HELLO</b><span>my name is</span><em>giulia</em></div>
+              <div class="sticker" style="--r:4deg" data-cursor="drag"><b>HELLO</b><span>my name is</span><em>nico</em></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DAY 06 · letters ============ -->
+    <section class="day-sec" id="day-6" style="--n:6" data-day="6">
+      <header class="day-head">
+        <p class="day-num" aria-hidden="true">06</p>
+        <div>
+          <p class="kicker" data-scramble>day 06 · <b>symptom: missing someone</b></p>
+          <h2 class="day-title" data-split>letters</h2>
+        </div>
+      </header>
+      <div class="day-body flip">
+        <figure class="day-figure">
+          <div class="slot" data-img="INDEX/day-6.jpg" data-ratio="2/3" data-alt="An open book, pearls and a lipstick kiss on paper">
+            <span class="slot-label">INDEX/day-6.jpg<small>2:3</small></span>
+          </div>
+          <figcaption class="mono">sealed with a kiss. literally.</figcaption>
+        </figure>
+        <div class="day-copy">
+          <p class="lead reveal">You write to someone by hand. No backspace, no read receipts, no typing bubble. It takes four days to arrive, and the waiting is part of it. Some letters are still on their way.</p>
+          <ul class="timetable reveal">
+            <li><time>10:00</time><span>paper, a pen, a stamp. that's the whole interface.</span></li>
+            <li><time>11:30</time><span>you cross something out. it stays crossed out.</span></li>
+            <li><time>16:00</time><span>the post van. you wave at it, a bit too much.</span></li>
+          </ul>
+          <div class="toy toy-letter">
+            <form id="letterForm" class="letter" autocomplete="off">
+              <p class="letter-to"><label for="letterTo">dear</label> <input id="letterTo" maxlength="20" placeholder="someone"></p>
+              <textarea id="letterBody" rows="4" maxlength="280" placeholder="no backspace in spirit. write it once."></textarea>
+              <p class="letter-from script">— from the house with no signal</p>
+              <span class="letter-stamp" id="letterStamp" aria-hidden="true">LOG.OFF<br><b>POSTED</b><br><span id="stampDate">—</span></span>
+              <button class="pill solid" type="submit" data-magnetic>post it</button>
+            </form>
+            <p class="mono toy-note" id="letterNote">letters you've sent from here: <b id="letterCount">0</b></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DAY 07 · free ============ -->
+    <section class="day-sec day-last" id="day-7" style="--n:7" data-day="7">
+      <p class="day-num" aria-hidden="true">07</p>
+      <p class="kicker" data-scramble>day 07 · <b>symptom: none</b></p>
+      <figure class="d7-figure">
+        <div class="slot" data-img="PROGRAM/07.jpg" data-ratio="4/3" data-alt="A girl with red hair on a cliff, arms up, the sea behind her">
+          <span class="slot-label">PROGRAM/07.jpg<small>arms up, the cliff · 4:3</small></span>
+        </div>
+        <h2 class="free-big">free</h2>
+      </figure>
+      <p class="d7-line">Nobody has come back to describe day seven.</p>
+      <p class="d7-later mono" id="d7Later">(it's nice here.)</p>
+      <div class="d7-cta">
+        <a class="pill solid" href="check-in.html" data-magnetic>Check in <span class="arrow">→</span></a>
+        <a class="text-link" href="index.html">back to the home</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="ft-top">
+      <div class="ft-col">
+        <p class="ft-kicker">from the guestbook</p>
+        <p class="ft-quote">“Day three nearly broke me. Day four fixed it.”<span>— nico, room 4</span></p>
+        <p class="ft-quote">“I still don't know what day seven is. I'd go back for it.”<span>— giulia, again</span></p>
+      </div>
+      <div class="ft-col ft-center">
+        <p class="ft-kicker">LOG.OFF retreat</p>
+        <p class="ft-quote">a seven-day retreat for<br>people who can't press esc.</p>
+        <p class="ft-promise">no wifi · no signal · no regrets</p>
+      </div>
+      <div class="ft-col">
+        <p class="ft-kicker">index</p>
+        <ul class="ft-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="retreat.html">The house</a></li>
+          <li><a href="check-in.html">Check in</a></li>
+          <li><a href="let-go.html">Let it go</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="privacy.html">What this device remembers</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ft-word" id="ftWord" aria-hidden="true">LOG.OFF</p>
+    <div class="ft-bottom">
+      <p>© 2026 LOG.OFF · a fictional retreat · nothing leaves your browser</p>
+      <p class="ft-sign">concept, design &amp; code by <span class="script">ghostly.grl</span> ♥</p>
+      <a href="#top" class="text-link">back to the top</a>
+    </div>
+  </footer>
+
+  <!-- ============ LOG OFF screen ============ -->
+  <div class="logoff" id="logoff" role="dialog" aria-modal="true" aria-label="Logged off" aria-hidden="true">
+    <canvas id="logoffSky"></canvas>
+    <div class="logoff-inner">
+      <p class="logoff-line">logging off… done.</p>
+      <p class="logoff-big">see you never</p>
+      <p class="logoff-line">close the tab. we mean it. ♡</p>
+      <button class="pill" id="logoffBack">ok fine, take me back</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/program.js"></script>
+</body>
+  <!--
+   *    /\_/\      +
+       ( o.o )   <3  ghostly.grl
+   +    > ^ <          *
+-->
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What this device remembers — LOG.OFF</title>
+  <meta name="description" content="Nothing leaves your browser. Here's everything LOG.OFF keeps on this device, live, and the button to make it forget.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Instrument+Serif:ital@0;1&family=Pinyon+Script&family=Space+Mono:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/privacy.css">
+</head>
+<body id="top" data-page="privacy">
+
+  <!-- shared SVG: four-point star + cursor arrow -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="star" viewBox="0 0 24 24"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></symbol>
+      <symbol id="arrow" viewBox="0 0 14 20"><path d="M1 1 L1 16 L4.6 12.6 L7.2 18.6 L9.8 17.4 L7.3 11.6 L12.4 11.6 Z" fill="#fff" stroke="#0d0c0d" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ LOADER ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <p class="loader-word">LOG.OFF<span class="blink">_</span></p>
+      <div class="loader-grid" id="loaderGrid"></div>
+      <p class="loader-line mono"><span id="loaderMsg">closing 47 tabs</span><span><span id="loaderCount">0</span>%</span></p>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+  <div class="pings" id="pings" aria-live="off"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="topnav" id="topnav">
+    <a class="nav-logo" href="index.html" aria-label="LOG.OFF — home">LOG.OFF<span class="blink">_</span></a>
+    <nav aria-label="Main">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"><span data-t="Home">Home</span></a></li>
+        <li><a href="program.html"><span data-t="The program">The program</span></a></li>
+        <li><a href="retreat.html"><span data-t="The house">The house</span></a></li>
+        <li><a href="let-go.html"><span data-t="Let it go">Let it go</span></a></li>
+        <li><a href="faq.html"><span data-t="FAQ">FAQ</span></a></li>
+      </ul>
+    </nav>
+    <div class="status" aria-label="Your connection">
+      <span class="status-time">screen time <b id="screenTime">00:00:00</b></span>
+      <span class="bars" id="bars" title="signal"><i></i><i></i><i></i><i></i></span>
+      <span class="battery" id="battery" title="social battery"><i></i></span>
+    </div>
+    <a class="pill solid nav-cta" href="check-in.html" data-magnetic>Check in <span class="arrow">→</span></a>
+    <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span></button>
+  </header>
+  <div class="menu" id="menu" aria-hidden="true">
+    <button class="pill menu-close" id="menuClose">close ×</button>
+  </div>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="p-hero" id="hero">
+      <div class="p-hero-copy">
+        <p class="kicker" data-scramble>privacy · <b>the honest version</b></p>
+        <h1 class="pv-title" data-split>what this<br>device<br>remembers.</h1>
+        <p class="lead reveal">Nothing you do here leaves your browser. No account, no server, no analytics, no tracking pixel pretending to be a gif. But this device does remember a few things, so the site can be a little bit personal. Here they are, every one of them, live. You can make it forget.</p>
+        <p class="mem-total mono">things remembered right now: <b id="memCount">0</b> · size: <b id="memSize">0 B</b></p>
+      </div>
+      <figure class="p-hero-figure">
+        <div class="slot" data-img="PRIVACY/hero.jpg" data-ratio="4/5" data-blocks data-alt="An old notebook, half the pages torn out">
+          <span class="slot-label">PRIVACY/hero.jpg<small>a notebook, pages torn out · 4:5</small></span>
+        </div>
+        <figcaption class="mono">fig. 01 — memory, the analogue kind. you can tear pages out of this one too.</figcaption>
+      </figure>
+      <span class="star" style="top:20%;left:48%"><svg><use href="#star"/></svg></span>
+    </section>
+
+    <div class="tape" data-tape>
+      <div class="tape-track">
+        <span>no cookies <b>//</b> no analytics <b>//</b> no server <b>//</b> no account <b>//</b> just this browser and its little notebook <b>//</b></span>
+      </div>
+    </div>
+
+    <!-- ============ THE MEMORY ============ -->
+    <section class="memory" id="memory">
+      <div class="memory-head">
+        <p class="kicker" data-scramble>01 · <b>the memory, live</b></p>
+        <h2 class="h-big" data-split>everything<br>it kept.</h2>
+        <p class="mono memory-hint">each card is one thing stored in this browser's localStorage, under a key that starts with <b>lo-</b>. forget it and it's gone for good.</p>
+      </div>
+      <ul class="cards" id="cards" aria-live="polite"></ul>
+      <div class="empty" id="empty" hidden>
+        <p class="script">nothing.</p>
+        <p class="mono">this device remembers nothing about you. walk around the site and come back: you'll see it fill up.</p>
+      </div>
+    </section>
+
+    <!-- ============ FORGET EVERYTHING ============ -->
+    <section class="forget" id="forget">
+      <div class="forget-copy">
+        <p class="kicker" data-scramble>02 · <b>the big button</b></p>
+        <h2 class="h-big" data-split>forget<br>everything.</h2>
+        <p class="lead reveal">Screen time, the notes you threw into the sea, your name, your ticket, how many times you tried to press esc. Hold the button and it all goes. It can't be undone, which is sort of the point of this whole place.</p>
+      </div>
+      <button class="hold big-hold" id="forgetAll" data-cursor="hold">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29"/><circle class="hold-ring" id="forgetRing" cx="32" cy="32" r="29"/></svg>
+        <span id="forgetLabel">hold to forget everything</span>
+      </button>
+    </section>
+
+    <!-- ============ THE SMALL PRINT ============ -->
+    <section class="print" id="print">
+      <p class="kicker" data-scramble>03 · <b>the small print, in large print</b></p>
+      <ol class="articles">
+        <li><span class="a-n">01</span><div><h3>what we collect</h3><p>Nothing. There is no server. LOG.OFF is a static website: it can't send anything anywhere, because there's nowhere to send it.</p></div></li>
+        <li><span class="a-n">02</span><div><h3>what this browser keeps</h3><p>A few small things, in <em>localStorage</em> and <em>sessionStorage</em>, all under keys starting with <code>lo-</code>: listed live above. They stay on this device until you forget them here, or clear your browser's site data.</p></div></li>
+        <li><span class="a-n">03</span><div><h3>cookies</h3><p>None. Not even the chocolate ones. Sorry.</p></div></li>
+        <li><span class="a-n">04</span><div><h3>analytics &amp; tracking</h3><p>None. We don't know you were here. Honestly, that's the most romantic thing about this website.</p></div></li>
+        <li><span class="a-n">05</span><div><h3>other people's servers</h3><p>To look the way it does, the site loads fonts from Google Fonts and animation libraries (GSAP, Lenis) from public CDNs. Like any website, those services see a normal request from your browser. They don't see anything you type here.</p></div></li>
+        <li><span class="a-n">06</span><div><h3>the forms</h3><p>The letters, the postcards, the notes for the sea, the check-in: none of them are sent. The letter you "posted" is still on this device. That's either sad or lovely. We think lovely.</p></div></li>
+        <li><span class="a-n">07</span><div><h3>forgetting</h3><p>Use the cards above, or the big button, or type <code>logoff.forget()</code> in the console if that's more your style.</p></div></li>
+      </ol>
+      <div class="print-cta">
+        <a class="pill solid" href="index.html" data-magnetic>back to the home <span class="arrow">→</span></a>
+        <a class="text-link" href="check-in.html">or check in</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="ft-top">
+      <div class="ft-col">
+        <p class="ft-kicker">from the guestbook</p>
+        <p class="ft-quote">“I read the privacy page. All of it. Voluntarily.”<span>— tommaso, room 8</span></p>
+        <p class="ft-quote">“It remembered my name. Then I made it forget. Felt great.”<span>— yuki, room 10</span></p>
+      </div>
+      <div class="ft-col ft-center">
+        <p class="ft-kicker">LOG.OFF retreat</p>
+        <p class="ft-quote">a seven-day retreat for<br>people who can't press esc.</p>
+        <p class="ft-promise">no wifi · no signal · no regrets</p>
+      </div>
+      <div class="ft-col">
+        <p class="ft-kicker">index</p>
+        <ul class="ft-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="program.html">The program</a></li>
+          <li><a href="retreat.html">The house</a></li>
+          <li><a href="let-go.html">Let it go</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="check-in.html">Check in</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ft-word" id="ftWord" aria-hidden="true">LOG.OFF</p>
+    <div class="ft-bottom">
+      <p>© 2026 LOG.OFF · a fictional retreat · nothing leaves your browser</p>
+      <p class="ft-sign">concept, design &amp; code by <span class="script">ghostly.grl</span> ♥</p>
+      <a href="#top" class="text-link">back to the top</a>
+    </div>
+  </footer>
+
+  <!-- ============ LOG OFF screen ============ -->
+  <div class="logoff" id="logoff" role="dialog" aria-modal="true" aria-label="Logged off" aria-hidden="true">
+    <canvas id="logoffSky"></canvas>
+    <div class="logoff-inner">
+      <p class="logoff-line">logging off… done.</p>
+      <p class="logoff-big">see you never</p>
+      <p class="logoff-line">close the tab. we mean it. ♡</p>
+      <button class="pill" id="logoffBack">ok fine, take me back</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/privacy.js"></script>
+</body>
+  <!--
+   *    /\_/\      +
+       ( o.o )   <3  ghostly.grl
+   +    > ^ <          *
+-->
+</html>

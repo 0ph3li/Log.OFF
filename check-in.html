@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Check in — LOG.OFF</title>
+  <meta name="description" content="Check in to LOG.OFF: pick a week and a room, sign the vow, hand over your phone. The last form you'll fill in for a while.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Instrument+Serif:ital@0;1&family=Pinyon+Script&family=Space+Mono:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/checkin.css">
+</head>
+<body id="top" data-page="check-in">
+
+  <!-- shared SVG: four-point star + cursor arrow -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="star" viewBox="0 0 24 24"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></symbol>
+      <symbol id="arrow" viewBox="0 0 14 20"><path d="M1 1 L1 16 L4.6 12.6 L7.2 18.6 L9.8 17.4 L7.3 11.6 L12.4 11.6 Z" fill="#fff" stroke="#0d0c0d" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ LOADER ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <p class="loader-word">LOG.OFF<span class="blink">_</span></p>
+      <div class="loader-grid" id="loaderGrid"></div>
+      <p class="loader-line mono"><span id="loaderMsg">closing 47 tabs</span><span><span id="loaderCount">0</span>%</span></p>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+  <div class="pings" id="pings" aria-live="off"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="topnav" id="topnav">
+    <a class="nav-logo" href="index.html" aria-label="LOG.OFF — home">LOG.OFF<span class="blink">_</span></a>
+    <nav aria-label="Main">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"><span data-t="Home">Home</span></a></li>
+        <li><a href="program.html"><span data-t="The program">The program</span></a></li>
+        <li><a href="retreat.html"><span data-t="The house">The house</span></a></li>
+        <li><a href="let-go.html"><span data-t="Let it go">Let it go</span></a></li>
+        <li><a href="faq.html"><span data-t="FAQ">FAQ</span></a></li>
+      </ul>
+    </nav>
+    <div class="status" aria-label="Your connection">
+      <span class="status-time">screen time <b id="screenTime">00:00:00</b></span>
+      <span class="bars" id="bars" title="signal"><i></i><i></i><i></i><i></i></span>
+      <span class="battery" id="battery" title="social battery"><i></i></span>
+    </div>
+    <a class="pill solid nav-cta" href="check-in.html" aria-current="page" data-magnetic>Check in <span class="arrow">→</span></a>
+    <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span></button>
+  </header>
+  <div class="menu" id="menu" aria-hidden="true">
+    <button class="pill menu-close" id="menuClose">close ×</button>
+  </div>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="c-hero" id="hero">
+      <div class="c-hero-copy">
+        <p class="kicker" data-scramble>check in · <b>the last form you'll fill in for a while</b></p>
+        <h1 class="c-title" aria-label="check in."><span data-chars>check in.</span></h1>
+        <p class="lead reveal">Five small steps: your name, a week, a room, a promise and your phone. It takes about two minutes. After that, nothing will ask anything of you for seven days.</p>
+        <a class="pill solid" href="#form" data-magnetic>start <span class="arrow">↓</span></a>
+      </div>
+      <figure class="c-hero-figure">
+        <div class="slot" data-img="CHECK-IN/hero.jpg" data-ratio="4/5" data-blocks data-alt="A suitcase by the door, ready to go">
+          <span class="slot-label">CHECK-IN/hero.jpg<small>a bag by the door, ready · 4:5</small></span>
+        </div>
+        <figcaption class="mono">fig. 01 — packed: a book, a jumper, no charger.</figcaption>
+      </figure>
+      <span class="star" style="top:20%;left:48%"><svg><use href="#star"/></svg></span>
+      <span class="star" style="bottom:12%;left:5%;width:14px;height:14px;animation-delay:-1.4s"><svg><use href="#star"/></svg></span>
+    </section>
+
+    <div class="tape" data-tape>
+      <div class="tape-track">
+        <span>no account needed <b>//</b> no password <b>//</b> no "remember me" <b>//</b> we will, anyway <b>//</b> nothing leaves this browser <b>//</b></span>
+      </div>
+    </div>
+
+    <!-- ============ THE FORM ============ -->
+    <section class="booking" id="form">
+      <div class="steps-col">
+        <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+        <p class="mono step-of" id="stepOf">step 1 / 5</p>
+
+        <form class="steps" id="steps" autocomplete="off" novalidate>
+
+          <!-- 1 · who -->
+          <fieldset class="step on" data-step="1">
+            <legend class="step-title">who's coming?</legend>
+            <label class="field">
+              <span class="mono">your name. not your username.</span>
+              <input id="fName" maxlength="20" placeholder="e.g. martina">
+            </label>
+            <p class="mono field-label">how are you, honestly?</p>
+            <div class="chips" role="radiogroup" aria-label="Mood" id="moods">
+              <button type="button" class="chip" role="radio" aria-checked="false" data-v="tired">tired</button>
+              <button type="button" class="chip" role="radio" aria-checked="false" data-v="overstimulated">overstimulated</button>
+              <button type="button" class="chip" role="radio" aria-checked="false" data-v="fine (lying)">fine (lying)</button>
+              <button type="button" class="chip" role="radio" aria-checked="false" data-v="curious">curious</button>
+              <button type="button" class="chip" role="radio" aria-checked="false" data-v="heartbroken">heartbroken</button>
+            </div>
+          </fieldset>
+
+          <!-- 2 · when -->
+          <fieldset class="step" data-step="2">
+            <legend class="step-title">which week?</legend>
+            <p class="mono field-label">monday to monday. arrivals on the 9:12 bus.</p>
+            <div class="weeks" role="radiogroup" aria-label="Week" id="weeks"></div>
+          </fieldset>
+
+          <!-- 3 · room -->
+          <fieldset class="step" data-step="3">
+            <legend class="step-title">pick a room.</legend>
+            <p class="mono field-label">twelve rooms. a bed, a window, a ticking clock. some are taken.</p>
+            <div class="rooms-pick" role="radiogroup" aria-label="Room" id="roomsPick"></div>
+          </fieldset>
+
+          <!-- 4 · the vow -->
+          <fieldset class="step" data-step="4">
+            <legend class="step-title">the vow.</legend>
+            <ul class="vows" id="vows">
+              <li><label><input type="checkbox"><span>i will hand over my phone at the door, and not ask for it back "just for a second".</span></label></li>
+              <li><label><input type="checkbox"><span>i will not ask for the wifi password more than twice.</span></label></li>
+              <li><label><input type="checkbox"><span>i will let myself be bored.</span></label></li>
+              <li><label><input type="checkbox"><span>i will not film the sunset.</span></label></li>
+              <li><label><input type="checkbox"><span>i will be kind to myself on day three.</span></label></li>
+            </ul>
+            <div class="sign">
+              <p class="mono field-label">sign here <button type="button" class="text-link sign-clear" id="signClear">clear</button></p>
+              <canvas class="sign-pad" id="signPad" aria-label="Signature pad. Draw your signature." data-cursor="sign"></canvas>
+            </div>
+          </fieldset>
+
+          <!-- 5 · hand it over -->
+          <fieldset class="step" data-step="5">
+            <legend class="step-title">hand it over.</legend>
+            <p class="mono field-label">drag your phone into the bag. it's for seven days. you'll be fine.</p>
+            <div class="handover" id="handover">
+              <div class="phone-token" id="phoneToken" tabindex="0" role="button" aria-label="Your phone. Drag it into the bag, or press enter." data-cursor="drag">
+                <span class="pt-notch"></span><span class="pt-time" id="ptTime">09:12</span><span class="pt-ping">(47)</span>
+              </div>
+              <div class="drop-bag" id="dropBag">
+                <span class="db-zip"></span>
+                <span class="db-label">LOG.OFF<br>sealed · day 1–7</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="step-nav">
+            <button type="button" class="pill" id="back" data-magnetic>← back</button>
+            <button type="button" class="pill solid" id="next" data-magnetic>next <span class="arrow">→</span></button>
+          </div>
+        </form>
+
+        <!-- after: you're in -->
+        <div class="booked" id="booked" hidden>
+          <p class="booked-big script">you're in.</p>
+          <p class="lead">See you at the bus stop. Bring a book, a jumper and nothing else. Your phone already knows.</p>
+          <p class="mono">tear off the stub on your ticket. keep it. it's the only screenshot you'll take this week.</p>
+          <div class="booked-links">
+            <a class="pill solid" href="program.html" data-magnetic>read the program <span class="arrow">→</span></a>
+            <button class="text-link" id="restart">cancel and start again</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- the ticket, building itself as you go -->
+      <aside class="ticket-col">
+        <article class="ticket" id="ticket" aria-label="Your ticket">
+          <div class="t-main">
+            <p class="t-head"><span>LOG.OFF</span><span class="mono">admit one · no signal</span></p>
+            <dl class="t-grid">
+              <div><dt>guest</dt><dd id="tName">—</dd></div>
+              <div><dt>mood</dt><dd id="tMood">—</dd></div>
+              <div><dt>week of</dt><dd id="tWeek">—</dd></div>
+              <div><dt>room</dt><dd id="tRoom">—</dd></div>
+              <div><dt>gate</dt><dd>bus stop 41</dd></div>
+              <div><dt>seat</dt><dd>none</dd></div>
+            </dl>
+            <p class="t-checks mono"><span id="tVow">○ vow</span><span id="tSign">○ signed</span><span id="tPhone">○ phone in the bag</span></p>
+            <svg class="t-barcode" id="tBarcode" viewBox="0 0 260 44" aria-hidden="true"></svg>
+          </div>
+          <div class="t-stub" id="tStub" data-cursor="tear">
+            <p class="t-stub-big">07</p>
+            <p class="mono">days<br>keep this<br>part</p>
+          </div>
+          <span class="t-stamp" id="tStamp" aria-hidden="true">CHECKED<br>IN</span>
+        </article>
+        <p class="mono ticket-note">live preview · nothing leaves this browser</p>
+      </aside>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="ft-top">
+      <div class="ft-col">
+        <p class="ft-kicker">from the guestbook</p>
+        <p class="ft-quote">“The check-in form asked how I was. Honestly. Nobody had asked in months.”<span>— iris, room 11</span></p>
+        <p class="ft-quote">“I still have the stub.”<span>— everyone</span></p>
+      </div>
+      <div class="ft-col ft-center">
+        <p class="ft-kicker">LOG.OFF retreat</p>
+        <p class="ft-quote">a seven-day retreat for<br>people who can't press esc.</p>
+        <p class="ft-promise">no wifi · no signal · no regrets</p>
+      </div>
+      <div class="ft-col">
+        <p class="ft-kicker">index</p>
+        <ul class="ft-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="program.html">The program</a></li>
+          <li><a href="retreat.html">The house</a></li>
+          <li><a href="let-go.html">Let it go</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="privacy.html">What this device remembers</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ft-word" id="ftWord" aria-hidden="true">LOG.OFF</p>
+    <div class="ft-bottom">
+      <p>© 2026 LOG.OFF · a fictional retreat · nothing leaves your browser</p>
+      <p class="ft-sign">concept, design &amp; code by <span class="script">ghostly.grl</span> ♥</p>
+      <a href="#top" class="text-link">back to the top</a>
+    </div>
+  </footer>
+
+  <!-- ============ LOG OFF screen ============ -->
+  <div class="logoff" id="logoff" role="dialog" aria-modal="true" aria-label="Logged off" aria-hidden="true">
+    <canvas id="logoffSky"></canvas>
+    <div class="logoff-inner">
+      <p class="logoff-line">logging off… done.</p>
+      <p class="logoff-big">see you never</p>
+      <p class="logoff-line">close the tab. we mean it. ♡</p>
+      <button class="pill" id="logoffBack">ok fine, take me back</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/checkin.js"></script>
+</body>
+  <!--
+   *    /\_/\      +
+       ( o.o )   <3  ghostly.grl
+   +    > ^ <          *
+-->
+</html>

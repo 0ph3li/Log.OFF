@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Let it go — LOG.OFF</title>
+  <meta name="description" content="The LOG.OFF ritual: write it down, crumple it, throw it into the sea. A wall of everything our guests left behind, and a minute to breathe.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Instrument+Serif:ital@0;1&family=Pinyon+Script&family=Space+Mono:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/letgo.css">
+</head>
+<body id="top" data-page="let-go">
+
+  <!-- shared SVG: four-point star + cursor arrow + paper wrinkles -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="star" viewBox="0 0 24 24"><path d="M12 0 C13 8 16 11 24 12 C16 13 13 16 12 24 C11 16 8 13 0 12 C8 11 11 8 12 0Z"/></symbol>
+      <symbol id="arrow" viewBox="0 0 14 20"><path d="M1 1 L1 16 L4.6 12.6 L7.2 18.6 L9.8 17.4 L7.3 11.6 L12.4 11.6 Z" fill="#fff" stroke="#0d0c0d" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+      <filter id="crumple" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="4" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="0" id="crumpleMap" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ============ LOADER ============ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <p class="loader-word">LOG.OFF<span class="blink">_</span></p>
+      <div class="loader-grid" id="loaderGrid"></div>
+      <p class="loader-line mono"><span id="loaderMsg">closing 47 tabs</span><span><span id="loaderCount">0</span>%</span></p>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+  <div class="pings" id="pings" aria-live="off"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="topnav" id="topnav">
+    <a class="nav-logo" href="index.html" aria-label="LOG.OFF — home">LOG.OFF<span class="blink">_</span></a>
+    <nav aria-label="Main">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"><span data-t="Home">Home</span></a></li>
+        <li><a href="program.html"><span data-t="The program">The program</span></a></li>
+        <li><a href="retreat.html"><span data-t="The house">The house</span></a></li>
+        <li><a href="let-go.html" aria-current="page"><span data-t="Let it go">Let it go</span></a></li>
+        <li><a href="faq.html"><span data-t="FAQ">FAQ</span></a></li>
+      </ul>
+    </nav>
+    <div class="status" aria-label="Your connection">
+      <span class="status-time">screen time <b id="screenTime">00:00:00</b></span>
+      <span class="bars" id="bars" title="signal"><i></i><i></i><i></i><i></i></span>
+      <span class="battery" id="battery" title="social battery"><i></i></span>
+    </div>
+    <a class="pill solid nav-cta" href="check-in.html" data-magnetic>Check in <span class="arrow">→</span></a>
+    <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span></button>
+  </header>
+  <div class="menu" id="menu" aria-hidden="true">
+    <button class="pill menu-close" id="menuClose">close ×</button>
+  </div>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="lg-hero" id="hero">
+      <div class="lg-hero-top">
+        <p class="kicker" data-scramble>the ritual · <b>three steps · one sea</b></p>
+        <h1 class="lg-title" aria-label="let it all go"><span>let</span> <span>it all</span> <span>go</span></h1>
+      </div>
+      <div class="lg-hero-copy">
+        <p class="lead reveal">Every guest does it on the first evening, on the rocks below the house. You write down the thing you're carrying, you crumple it, and you throw it into the sea. It's a bit silly. It works anyway.</p>
+        <a class="pill solid" href="#ritual" data-magnetic>start the ritual <span class="arrow">↓</span></a>
+      </div>
+      <figure class="lg-hero-figure">
+        <div class="slot" data-img="LET-GO/hero.jpg" data-ratio="4/3" data-blocks data-alt="Two girls sitting under a tree by the water, not looking at their phones">
+          <span class="slot-label">LET-GO/hero.jpg<small>by the water · 4:3</small></span>
+        </div>
+        <figcaption class="mono">fig. 01 — the evening before the ritual. nobody said much.</figcaption>
+      </figure>
+      <span class="star" style="top:22%;right:8%"><svg><use href="#star"/></svg></span>
+      <span class="star" style="bottom:10%;left:4%;width:14px;height:14px;animation-delay:-1.3s"><svg><use href="#star"/></svg></span>
+    </section>
+
+    <div class="tape" data-tape>
+      <div class="tape-track">
+        <span>you don't have to carry it <b>//</b> you don't have to fix it <b>//</b> you don't have to post about it <b>//</b> you just have to let it go <b>//</b></span>
+      </div>
+    </div>
+
+    <!-- ============ THE RITUAL ============ -->
+    <section class="ritual" id="ritual">
+      <div class="ritual-head">
+        <p class="kicker" data-scramble>01 · <b>the ritual</b></p>
+        <h2 class="h-big" data-split>write it.<br>crumple it.<br>throw it.</h2>
+        <ol class="steps" id="steps" aria-label="Steps">
+          <li class="on"><span>01</span> write</li>
+          <li><span>02</span> crumple</li>
+          <li><span>03</span> throw</li>
+        </ol>
+      </div>
+
+      <div class="stage" id="stage">
+        <!-- the sea, where everything goes -->
+        <div class="sea-box" id="sea">
+          <div class="slot" data-img="LET-GO/sea.jpg" data-ratio="1/1" data-alt="A wave breaking on a black cliff, seabirds over the grey sea">
+            <span class="slot-label">LET-GO/sea.jpg<small>the sea from the rocks · 1:1</small></span>
+          </div>
+          <p class="sea-label mono">the sea ↓ throw it here</p>
+          <div class="splash" id="splash" aria-hidden="true"></div>
+        </div>
+
+        <!-- the paper: step 1 and 2 -->
+        <div class="desk" id="desk">
+          <form class="paper" id="paper" autocomplete="off">
+            <p class="paper-head"><span class="script">i'm letting go of</span><span class="mono" id="paperDate">—</span></p>
+            <textarea id="paperText" rows="4" maxlength="120" placeholder="being perfect. 3am scrolling. waiting for his reply…" aria-label="What are you letting go of?"></textarea>
+            <p class="paper-foot mono"><span id="paperCount">0</span>/120 · it doesn't have to be poetic</p>
+          </form>
+          <div class="desk-actions">
+            <button class="pill solid" id="toCrumple" data-magnetic>next: crumple it <span class="arrow">→</span></button>
+            <button class="hold" id="crumpleBtn" hidden data-cursor="hold">
+              <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29"/><circle class="hold-ring" id="crumpleRing" cx="32" cy="32" r="29"/></svg>
+              <span id="crumpleLabel">hold to crumple</span>
+            </button>
+          </div>
+          <!-- step 3: the ball -->
+          <div class="ball" id="ball" hidden data-cursor="throw" aria-label="Your crumpled note. Drag and throw it into the sea." tabindex="0"></div>
+          <p class="ball-hint mono" id="ballHint" hidden>drag it. throw it at the sea. (or press enter)</p>
+          <p class="gone-msg" id="goneMsg" hidden aria-live="polite"><span class="script">gone.</span><br><button class="text-link" id="again">let go of something else →</button></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THE WALL ============ -->
+    <section class="wall-sec" id="wall">
+      <div class="wall-head">
+        <p class="kicker" data-scramble>02 · <b>the wall</b></p>
+        <h2 class="h-big" data-split>everything<br>the sea took.</h2>
+        <p class="lead reveal">Every note anyone has thrown from these rocks. The oldest ones are getting hard to read. The sea is slowly forgetting them, which is the whole point.</p>
+        <p class="mono wall-count">notes in the sea: <b id="wallCount">0</b> · yours: <b id="wallMine">0</b></p>
+      </div>
+      <ul class="wall" id="wallList"></ul>
+    </section>
+
+    <!-- ============ QUESTIONS YOU'RE AVOIDING ============ -->
+    <section class="ask" id="questions">
+      <div class="ask-copy">
+        <p class="kicker" data-scramble>03 · <b>the questions you're avoiding</b></p>
+        <h2 class="h-big" data-split>questions<br>you scroll<br>past.</h2>
+        <p class="lead reveal">The phone is very good at keeping these away. Answer them in your head; nobody's reading. Swipe right when you've answered honestly. Swipe left to skip, but skipped ones come back.</p>
+        <p class="mono ask-score">answered: <b id="askYes">0</b> · avoided: <b id="askNo">0</b></p>
+      </div>
+      <div class="deck-wrap">
+        <div class="deck" id="deck" aria-live="polite"></div>
+        <div class="deck-btns">
+          <button class="pill light" id="askSkip" data-cursor="skip">← skip it</button>
+          <button class="pill solid-light" id="askDone" data-cursor="done">answered it →</button>
+        </div>
+        <p class="mono deck-hint">drag the card, use the buttons, or the ← → keys</p>
+      </div>
+    </section>
+
+    <!-- ============ BREATHE ============ -->
+    <section class="breathe" id="breathe">
+      <div class="breathe-copy">
+        <p class="kicker" data-scramble>04 · <b>after</b></p>
+        <h2 class="h-big" data-split>now<br>breathe.</h2>
+        <p class="lead reveal">Four seconds in. Seven seconds holding it. Eight seconds out. It's the oldest trick there is and it still works. Three rounds is enough.</p>
+        <button class="pill solid" id="breatheBtn" data-magnetic>start breathing</button>
+        <p class="mono breathe-count">rounds: <b id="breathCount">0</b> / 3</p>
+      </div>
+      <div class="lung" id="lung" aria-live="polite">
+        <span class="lung-ring"></span><span class="lung-ring r2"></span>
+        <div class="lung-core"><p class="lung-word" id="lungWord">ready</p><p class="lung-sec mono" id="lungSec">&nbsp;</p></div>
+      </div>
+    </section>
+
+    <!-- ============ THE GUIDE ============ -->
+    <section class="guide" id="guide">
+      <p class="kicker" data-scramble>05 · <b>how to let go (a guide)</b></p>
+      <ol class="guide-list">
+        <li><span class="g-n">01</span><p>name it. <em>out loud, if nobody's listening.</em></p></li>
+        <li><span class="g-n">02</span><p>write it once. <em>no drafts. no backspace.</em></p></li>
+        <li><span class="g-n">03</span><p>make it small. <em>crumple it until it fits in your hand.</em></p></li>
+        <li><span class="g-n">04</span><p>throw it far. <em>further than feels polite.</em></p></li>
+        <li><span class="g-n">05</span><p>don't go back to check. <em>it's not there. that's the point.</em></p></li>
+      </ol>
+      <div class="guide-cta">
+        <a class="pill solid" href="check-in.html" data-magnetic>Check in <span class="arrow">→</span></a>
+        <a class="text-link" href="faq.html">next: the faq →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="ft-top">
+      <div class="ft-col">
+        <p class="ft-kicker">from the guestbook</p>
+        <p class="ft-quote">“I threw my ex's spotify password into the sea. Metaphorically. Also literally.”<span>— lea, room 7</span></p>
+        <p class="ft-quote">“My throw was terrible. It still counted.”<span>— sami, room 9</span></p>
+      </div>
+      <div class="ft-col ft-center">
+        <p class="ft-kicker">LOG.OFF retreat</p>
+        <p class="ft-quote">a seven-day retreat for<br>people who can't press esc.</p>
+        <p class="ft-promise">no wifi · no signal · no regrets</p>
+      </div>
+      <div class="ft-col">
+        <p class="ft-kicker">index</p>
+        <ul class="ft-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="program.html">The program</a></li>
+          <li><a href="retreat.html">The house</a></li>
+          <li><a href="check-in.html">Check in</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="privacy.html">What this device remembers</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ft-word" id="ftWord" aria-hidden="true">LOG.OFF</p>
+    <div class="ft-bottom">
+      <p>© 2026 LOG.OFF · a fictional retreat · nothing leaves your browser</p>
+      <p class="ft-sign">concept, design &amp; code by <span class="script">ghostly.grl</span> ♥</p>
+      <a href="#top" class="text-link">back to the top</a>
+    </div>
+  </footer>
+
+  <!-- ============ LOG OFF screen ============ -->
+  <div class="logoff" id="logoff" role="dialog" aria-modal="true" aria-label="Logged off" aria-hidden="true">
+    <canvas id="logoffSky"></canvas>
+    <div class="logoff-inner">
+      <p class="logoff-line">logging off… done.</p>
+      <p class="logoff-big">see you never</p>
+      <p class="logoff-line">close the tab. we mean it. ♡</p>
+      <button class="pill" id="logoffBack">ok fine, take me back</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/letgo.js"></script>
+</body>
+  <!--
+   *    /\_/\      +
+       ( o.o )   <3  ghostly.grl
+   +    > ^ <          *
+-->
+</html>
